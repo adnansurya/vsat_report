@@ -4,9 +4,18 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
+                </a>
+                <div class="sb-sidenav-menu-heading">Customer</div>
+                <a class="nav-link" href="lapor.php">
+                    <div class="sb-nav-link-icon"><i class="fa fa-plus-square"></i></div>
+                    Lapor Gangguan
+                </a>
+                <a class="nav-link" href="histori.php">
+                    <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
+                    Histori
                 </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
