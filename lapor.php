@@ -13,7 +13,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">Lapor Gangguan</h2>                        
+                        <h1 class="mt-4">Lapor Gangguan</h1>                        
                         <div class="card mt-4">
                             <div class="card-body">
                             <form>
@@ -36,9 +36,7 @@
                                 <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Kirim Laporan</a></div>
                             </form>
                             </div>
-                        </div>
-                        <div style="height: 100vh;"></div>
-                        <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
+                        </div>                       
                     </div>
                 </main>
                 <?php include('partials/footer.php'); ?>

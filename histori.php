@@ -14,9 +14,8 @@
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4">Histori</h1>                        
-                        <div class="card mb-4">
-                            <div class="card-body">
-                            <div class="list-group">
+                     
+                            <div class="mt-4 list-group">
                                 <a href="#collapseExample" data-toggle="collapse" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Sedang Diproses</h5>
@@ -29,7 +28,7 @@
                                     <div class="card card-body">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="mb-1">Admin</p>
-                                            <small>Mas Agus - 08123456789</small>
+                                            <small><b>Mas Agus - 08123456789</b></small>
                                         </div>
                                         <small>Jenis Gangguan : Pointing bergeser </small>
                                         <small>Perangkat : SAT182038</small>                                                                                                                       
@@ -55,24 +54,20 @@
                                     <div class="card card-body">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="mb-1">Admin</p>
-                                            <small>Mas Agus - 08123456789</small>
+                                            <small><b>Mas Agus - 08123456789</b></small>
                                         </div>
                                         <small>Jenis Gangguan : Pointing bergeser </small>
                                         <small>Perangkat : SAT182038</small>  
                                         <hr>
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="mb-1">Teknisi</p>
-                                            <small>Mas Pras - 08987654321</small>
+                                            <small><b>Mas Pras - 08987654321</b></small>
                                         </div>
                                         <small>Tindakan Perbaikan : Rapatkan ulang baut dan sekrup mounting </small>                                        
-                                        <img src="report_img/contoh.png" class="rounded mx-auto d-block mt-3" alt="..." height="200px">                                                                                                                      
+                                        <img src="report_img/contoh.png" class="rounded mx-auto d-block mt-3" alt="..." height="200px" style="max-width: 100%;  height: auto;">                                                                                                                      
                                     </div>
                                 </div>
-                            </div>
-                            </div>
-                        </div>
-                        <div style="height: 100vh;"></div>
-                        <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
+                            </div>                                                  
                     </div>
                 </main>
                 <?php include('partials/footer.php'); ?>

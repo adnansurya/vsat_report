@@ -10,12 +10,21 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">Customer</div>
                 <a class="nav-link" href="lapor.php">
-                    <div class="sb-nav-link-icon"><i class="fa fa-plus-square"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
                     Lapor Gangguan
                 </a>
                 <a class="nav-link" href="histori.php">
                     <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
                     Histori
+                </a>
+                <div class="sb-sidenav-menu-heading">Admin</div>
+                <a class="nav-link" href="proses.php">
+                    <div class="sb-nav-link-icon"><i class="far fa-clock"></i></div>
+                    Proses Gangguan
+                </a>
+                <a class="nav-link" href="laporan.php">
+                    <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
+                    Daftar Laporan
                 </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
