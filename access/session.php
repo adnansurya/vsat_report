@@ -2,15 +2,18 @@
    include('db_access.php');
    session_start();
    
-   $user_check = $_SESSION['login_user'];
+   $email_check = $_SESSION['login_email'];
    
-   $ses_sql = mysqli_query($db,"select username from admin where username = '$user_check' ");
+   
+   $ses_sql = mysqli_query($conn,"select * from user where email = '".$email_check."'");
    
    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
    
-   $login_session = $row['username'];
+   $nama_session = $row['nama'];
+   $role_session = $row['role'];
+     
    
-   if(!isset($_SESSION['login_user'])){
+   if(!isset($_SESSION['login_email'])){
       header("location:login.php");
       die();
    }

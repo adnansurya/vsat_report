@@ -14,9 +14,8 @@
        
        $sql = "SELECT * FROM user WHERE email = '".$myemail."' and pass = '".$mypassword."'";
        $result = mysqli_query($conn,$sql);
-       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-       $nama = $row['nama'];
-       $role = $row['role'];
+       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);    
+       $email = $row['email'];
        
        $count = mysqli_num_rows($result);
 
@@ -25,9 +24,7 @@
        // If result matched $myusername and $mypassword, table row must be 1 row         
        if($count == 1) {
         //   session_register("myname");
-          $_SESSION['login_user'] = $nama;
-          $_SESSION['login_role'] = $role; 
-          echo $nama;         
+          $_SESSION['login_email'] = $email;                          
           header("location: index.php");
          
 
