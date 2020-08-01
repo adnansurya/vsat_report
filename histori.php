@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include('partials/global.php') ?>
-        <?php include('partials/head.php'); ?>
+        <?php 
+            include('partials/global.php');
+            include('partials/head.php'); 
+            include('access/session.php');
+            
+            if($role_session != 'customer'){
+                header("location: index.php");
+            }
+        ?>
         
         <title><?php echo $webname; ?> - Blank</title>        
     </head>

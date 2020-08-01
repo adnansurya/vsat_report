@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include('partials/global.php') ?>
-        <?php include('partials/head.php'); ?>
+        <?php 
+            include('partials/global.php');
+            include('partials/head.php'); 
+            include('access/session.php'); 
+
+            if($role_session != 'customer'){
+                header("location: index.php");
+            }
+            
+        ?>
         
         <title><?php echo $webname; ?> - Blank</title>        
     </head>
@@ -16,12 +24,12 @@
                         <h1 class="mt-4">Lapor Gangguan</h1>                        
                         <div class="card mt-4">
                             <div class="card-body">
-                            <form>
+                            <form action="access/post_lapor.php" method="post">
                                 <div class="form-row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="small mb-1" for="exampleFormControlTextarea1">Lokasi Gangguan</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="lokasi" rows="2" required></textarea>
                                         </div>
                                     </div>                                    
                                 </div>                               
@@ -29,11 +37,11 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="small mb-1" for="exampleFormControlTextarea2">Keterangan</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea2" name="keterangan" rows="3" required></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Kirim Laporan</a></div>
+                                <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Kirim Laporan</a></div>
                             </form>
                             </div>
                         </div>                       
