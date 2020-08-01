@@ -6,7 +6,7 @@
     }
 
     if(isset($_POST['lokasi']) && isset($_POST['keterangan'])){
-        $sql = "INSERT INTO report (customer_id, waktu_lapor, stat) VALUES ('".$row['user_id']."','$waktu','Belum Diproses')";
+        $sql = "INSERT INTO report (customer_id, lokasi, keterangan, waktu_lapor, stat) VALUES ('".$row['user_id']."','".$_POST['lokasi']."','".$_POST['keterangan']."','$waktu','Belum Diproses')";
         if (!mysqli_query($conn,$sql)){
         
             echo "Error description: " . mysqli_error($conn);
@@ -17,10 +17,7 @@
 
     }else{
         echo "Data tidak boleh kosong";
-    }
-
-    echo $_POST['lokasi'];
-    echo $_POST['keterangan'];
+    }   
 
 
     
