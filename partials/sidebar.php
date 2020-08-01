@@ -26,6 +26,15 @@
                     <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
                     Daftar Laporan
                 </a>
+                <div class="sb-sidenav-menu-heading">Teknisi</div>
+                <a class="nav-link" href="proses.php">
+                    <div class="sb-nav-link-icon"><i class="far fa-file"></i></div>
+                    Laporan Masuk
+                </a>
+                <a class="nav-link" href="laporan.php">
+                    <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
+                    Daftar Laporan
+                </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
