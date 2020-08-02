@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include('partials/global.php') ?>
-        <?php include('partials/head.php'); ?>
+        <?php 
+            include('partials/global.php');             
+            include('partials/head.php'); 
+            include('access/session.php');
+
+            if(!($role_session == 'admin' || $role_session == 'teknisi')){                
+                header("location:index.php");                
+            } 
+        ?>
         
         <title><?php echo $webname; ?> - Blank</title> 
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />       
