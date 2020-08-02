@@ -21,3 +21,6 @@ if ($input['action'] === 'edit') {
 
 mysqli_close($conn);
 header('Location: ../perangkat.php'); 
+
+
+?>

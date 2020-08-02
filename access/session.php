@@ -15,5 +15,6 @@
       
       $nama_session = $row['nama'];
       $role_session = $row['role'];
+      $id_session = $row['user_id'];
    }
 ?>

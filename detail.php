@@ -51,49 +51,70 @@
                                 </div>                                                                                         
                                 <small>Keterangan</small>
                                 <p><?php echo $report['keterangan']; ?></p>                                
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <small>Pilih Teknisi</small>
-                                        <select class="custom-select">                                            
-                                            <?php 
-                                                $load = mysqli_query($conn, "SELECT * FROM user WHERE role = 'teknisi' ORDER BY user_id");   
-                                                while ($row = mysqli_fetch_array($load)){
-                                                    echo '<option value="'.$row['user_id'].'"';
-                                                    if($report['teknisi_id'] == $row['user_id']){
-                                                        echo ' selected ';
-                                                    }
-                                                    echo '>'.$row['nama'].'</option>';
+                            </div>                           
+                        </div>
+                       
+                       
+                       
+                        <?php 
+                            if($role_session == 'admin' && $report['stat'] != 'Selesai'){
+                                echo '<div class="card mt-4">
+                                        <div class="card-body">  
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <small>Pilih Teknisi</small>
+                                                    <select form="reportForm" name="teknisi" class="custom-select"> ';
 
-                                                } 
-                                            ?>                                        
-                                        </select>
+                                $load = mysqli_query($conn, "SELECT * FROM user WHERE role = 'teknisi' ORDER BY user_id");   
+                                while ($row = mysqli_fetch_array($load)){
+                                    echo '<option value="'.$row['user_id'].'"';
+                                    if($report['teknisi_id'] == $row['user_id']){
+                                        echo ' selected ';
+                                    }
+                                    echo '>'.$row['nama'].'</option>';
+
+                                } 
+
+                                echo ' </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <small>Pilih Perangkat</small>
-                                        <select class="custom-select">                                            
-                                        <?php 
-                                                $load = mysqli_query($conn, "SELECT * FROM device ORDER BY device_name");   
-                                                while ($row = mysqli_fetch_array($load)){
-                                                    echo '<option value="'.$row['device_id'].'"';
-                                                    if($report['device_id'] == $row['device_id']){
-                                                        echo ' selected ';
-                                                    }
-                                                    echo '>'.$row['device_name'].'</option>';
+                                        <select form="reportForm" name="device" class="custom-select">   ';
+                                
+                                $load = mysqli_query($conn, "SELECT * FROM device ORDER BY device_name");   
+                                while ($row = mysqli_fetch_array($load)){
+                                    echo '<option value="'.$row['device_id'].'"';
+                                    if($report['device_id'] == $row['device_id']){
+                                        echo ' selected ';
+                                    }
+                                    echo '>'.$row['device_name'].'</option>';
 
-                                                } 
-                                            ?>    
-                                        </select>
-                                    </div>
-                                </div>                                
-                                <div class="row">
-                                    <div class="col-md-10 offset-md-1 mt-2">
-                                        <button class="btn btn-info btn-block">PROSES</button>
-                                    </div>
-                                </div>                                
-                            </div>
-                        </div>                       
+                                }
+
+                                echo '</select>
+                                                </div>
+                                            </div>                                
+                                            <div class="row">
+                                                <div class="col-md-12 mt-2">
+                                                <form action="access/report_update.php" method="post" id="reportForm">
+                                                    <input type="hidden" name="user_id" value="'.$id_session.'">  
+                                                    <input type="hidden" name="role" value="'.$role_session.'">    
+                                                    <input type="hidden" name="report_id" value="'.$report['report_id'].'">   
+                                                    <button type="submit" class="btn btn-info btn-block">PROSES</button>                         
+                                                </form>
+                                                    
+                                                </div>
+                                            </div>     
+                                        </div>
+                                    </div> ';
+                                
+                                
+                            }
+                            
+                                                        
+
+                                
+                        ?>                      
                     </div>
                 </main>
                 <?php include('partials/footer.php'); ?>

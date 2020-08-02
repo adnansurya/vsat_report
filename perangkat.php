@@ -58,7 +58,7 @@
                                         <input class="form-control py-4" id="name" type="text" placeholder="Masukkan Nama Perangkat" name="device_name" required>
                                     </div>                                                                               
                                     <div class="form-group text-right mt-4 mb-0">                                                
-                                        <button class="btn btn-primary" href="index.php" type="submit">Tambahkan</button>
+                                        <button class="btn btn-primary" type="submit">Tambahkan</button>
                                     </div>
                                 </form>
                             </div>                          
@@ -72,7 +72,7 @@
         <script src="js/jquery.tabledit.js"></script>
         <script>
               $('#deviceTable').Tabledit({
-                    url: 'access/device.php',
+                    url: 'access/device_update.php',
                     columns: {
                         identifier: [0, 'device_id'],
                         restoreButton: false,                        
