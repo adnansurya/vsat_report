@@ -38,11 +38,52 @@
                                 <div class="d-flex w-100 justify-content-between">
                                     <p><?php echo $report['nama']; ?></p>
                                     <p>#<?php echo $report['report_id']; ?></p>                                    
-                                </div>                              
-                                <small>Lokasi</small>
-                                <p><?php echo $report['lokasi']; ?></p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <small>Lokasi</small>
+                                        <p><?php echo $report['lokasi']; ?></p>
+                                    </div>
+                                    <div class="col-md-4 text-md-right">
+                                        <small>Waktu Laporan</small>
+                                        <p><?php echo $report['waktu_lapor']; ?></p>
+                                    </div>
+                                </div>                                                                                         
                                 <small>Keterangan</small>
                                 <p><?php echo $report['keterangan']; ?></p>                                
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <small>Pilih Teknisi</small>
+                                        <select class="custom-select">                                            
+                                            <?php 
+                                                $load = mysqli_query($conn, "SELECT * FROM user WHERE role = 'teknisi' ORDER BY user_id");   
+                                                while ($row = mysqli_fetch_array($load)){
+                                                    echo '<option value="'.$row['user_id'].'"';
+                                                    if($report['teknisi_id'] == $row['user_id']){
+                                                        echo ' selected ';
+                                                    }
+                                                    echo '>'.$row['nama'].'</option>';
+
+                                                } 
+                                            ?>                                        
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <small>Pilih Perangkat</small>
+                                        <select class="custom-select">                                            
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>                                
+                                <div class="row">
+                                    <div class="col-md-10 offset-md-1 mt-2">
+                                        <button class="btn btn-info btn-block">PROSES</button>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>                       
                     </div>

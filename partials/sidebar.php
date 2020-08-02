@@ -27,10 +27,14 @@
                         <a class="nav-link" href="proses.php">
                             <div class="sb-nav-link-icon"><i class="far fa-clock"></i></div>
                             Proses Gangguan
+                        </a>                       
+                        <a class="nav-link" href="perangkat.php">
+                            <div class="sb-nav-link-icon"><i class="far fa-hdd"></i></div>
+                            Daftar Perangkat
                         </a>
                         <a class="nav-link" href="laporan.php">
-                            <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
-                            Daftar Laporan
+                        <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
+                            Data Laporan
                         </a>';
                     }else if($role_session == "teknisi"){
                         echo '<div class="sb-sidenav-menu-heading">Teknisi</div>
@@ -40,7 +44,7 @@
                         </a>
                         <a class="nav-link" href="laporan.php">
                             <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
-                            Daftar Laporan
+                            Data Laporan
                         </a>';
                     }
                 ?>            
