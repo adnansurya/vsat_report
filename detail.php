@@ -73,9 +73,17 @@
                                     <div class="col-md-6 mb-3">
                                         <small>Pilih Perangkat</small>
                                         <select class="custom-select">                                            
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <?php 
+                                                $load = mysqli_query($conn, "SELECT * FROM device ORDER BY device_name");   
+                                                while ($row = mysqli_fetch_array($load)){
+                                                    echo '<option value="'.$row['device_id'].'"';
+                                                    if($report['device_id'] == $row['device_id']){
+                                                        echo ' selected ';
+                                                    }
+                                                    echo '>'.$row['device_name'].'</option>';
+
+                                                } 
+                                            ?>    
                                         </select>
                                     </div>
                                 </div>                                
