@@ -48,7 +48,11 @@
                                         <small>Waktu Laporan</small>
                                         <p><?php echo $report['waktu_lapor']; ?></p>
                                     </div>
-                                </div>                                                                                         
+                                </div>  
+                                <small>Status</small>
+                                <p>
+                                    <?php echo $report['stat'];?>
+                                </p>                                                                                           
                                 <small>Keterangan</small>
                                 <p><?php echo $report['keterangan']; ?></p>                                
                             </div>                           
