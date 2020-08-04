@@ -23,31 +23,33 @@
                         <h1 class="mt-4">Proses Gangguan</h1>                                                
                         <div class="mt-4 list-group">
                             <?php 
-
-                            $load = mysqli_query($conn, "SELECT user.* , report.* FROM report INNER JOIN user ON report.customer_id = user.user_id WHERE report.stat = 'Belum Diproses' OR report.stat = 'Sedang Diproses' ORDER BY report_id DESC");   
+                            if($role_session === 'admin'){
+                                $load = mysqli_query($conn, "SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* FROM user cust, user admin, report WHERE report.customer_id = cust.user_id AND (report.admin_id = admin.user_id OR report.admin_id = 0) AND (report.stat = 'Belum Diproses' OR report.stat = 'Sedang Diproses') GROUP BY report_id ORDER BY report_id DESC ");   
+                            }elseif($role_session === 'teknisi'){
+                                $load = mysqli_query($conn, "SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* FROM user cust, user admin, report WHERE report.customer_id = cust.user_id AND (report.admin_id = admin.user_id OR report.admin_id = 0)   AND report.teknisi_id = ".$id_session." AND  report.stat = 'Sedang Diproses' ORDER BY report_id DESC");  
+                            }
+                            
                             while ($row = mysqli_fetch_array($load)){
                                 echo '<a href="detail.php?id='.$row['report_id'].'" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">'.$row['nama'].'</h5>
+                                        <h5 class="mb-1">'.$row['nama_cust'].'</h5>
                                         <small>'.$row['waktu_lapor'].'</small>
                                     </div>
                                     
                                     <div class="d-flex w-100 justify-content-between">
-                                        <p class="mb-1">'.$row['lokasi'].'</p>
-                                        <button type="button" class="btn ';
+                                        <p class="mb-1">'.$row['lokasi'].'</p>';
                                 
                                 if($row['stat'] == 'Belum Diproses'){
-                                    echo  'btn-danger'; 
+                                    echo  '<button type="button" class="btn btn-danger btn-sm">'.$row['stat'].'</button>'; 
                                 }elseif($row['stat'] == 'Sedang Diproses'){
-                                    echo  'btn-warning'; 
+                                    echo  '<button type="button" class="btn btn-warning btn-sm">'.$row['nama_admin'].'</button>'; 
                                 }elseif($row['stat'] == 'Selesai'){
-                                    echo  'btn-success'; 
+                                    echo  '<button type="button" class="btn btn-success btn-sm">'.$row['nama_admin'].'</button>'; 
                                 }else{
-                                    echo  'btn-light'; 
+                                    echo  '<button type="button" class="btn btn-light'; 
                                 } 
 
-                                echo  ' btn-sm">'.$row['stat'].'</button>
-                                    </div>
+                                echo  '</div>
                                     <small>'.$row['keterangan'].'</small>
                                 </a>';
                             }

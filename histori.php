@@ -34,12 +34,25 @@
                                     }
 
                                     echo '<div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">'.$row['stat'].'</h5>
-                                            <small>'.$row['waktu_lapor'].'</small>
-                                            </div>
                                             <p class="mb-1">'.$row['lokasi'].'</p>
-                                            <small>'.$row['keterangan'].'</small>
-                                        </a>';
+                                            <small>'.$row['waktu_lapor'].'</small>
+                                        </div>
+                                    
+                                        <div class="d-flex w-100 justify-content-between">
+                                        <small>'.$row['keterangan'].'</small>';
+                                    
+                                    if($row['stat'] == 'Belum Diproses'){
+                                        echo  '<span class="badge badge-pill badge-danger">'.$row['stat'].'</span>'; 
+                                    }elseif($row['stat'] == 'Sedang Diproses'){
+                                        echo  '<span class="badge badge-pill badge-warning">'.$row['stat'].'</span>'; 
+                                    }elseif($row['stat'] == 'Selesai'){
+                                        echo  '<span class="badge badge-pill badge-success">'.$row['stat'].'</span>'; 
+                                    }else{
+                                        echo  '<span class="badge badge-pill badge-light">'.$row['stat'].'</span>'; 
+                                    } 
+
+
+                                    echo '</div></a>';
 
                                     if($row['stat'] === 'Sedang Diproses'){
                                         echo '<div class="collapse ml-3 mr-3" id="collapse'.$row['report_id'].'">
@@ -48,8 +61,7 @@
                                                         <p class="mb-1">Admin</p>
                                                         <small><b>'.$row['nama_admin'].' - '.$row['hp_admin'].'</b></small>
                                                     </div>
-                                                    <small>Jenis Gangguan : Pointing bergeser </small>
-                                                    <small>Perangkat : SAT182038</small>                                                                                                                       
+                                                    <small>Jenis Gangguan : '.$row['jenis'].' </small>                                                                                                                                                      
                                                 </div>
                                             </div>';                                        
                                     }elseif($row['stat'] === 'Selesai'){
@@ -59,8 +71,7 @@
                                                         <p class="mb-1">Admin</p>
                                                         <small><b>Mas Agus - 08123456789</b></small>
                                                     </div>
-                                                    <small>Jenis Gangguan : Pointing bergeser </small>
-                                                    <small>Perangkat : SAT182038</small>  
+                                                    <small>Jenis Gangguan : Pointing bergeser </small>                                                   
                                                     <hr>
                                                     <div class="d-flex w-100 justify-content-between">
                                                         <p class="mb-1">Teknisi</p>
