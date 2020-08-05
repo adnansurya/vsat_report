@@ -25,7 +25,7 @@
                             <div class="mt-4 list-group">
                             <?php
                         
-                                $load = mysqli_query($conn, "SELECT cust.nama AS 'nama_cust', admin.nama AS 'nama_admin', admin.hp AS 'hp_admin', report.* FROM user cust, user admin, report WHERE cust.user_id = report.customer_id AND admin.user_id = report.admin_id AND report.customer_id = ".$row['user_id']." ORDER BY report_id DESC");   
+                                $load = mysqli_query($conn, "SELECT cust.nama AS 'nama_cust', admin.nama AS 'nama_admin', admin.hp AS 'hp_admin', report.* FROM user cust, user admin, report WHERE cust.user_id = report.customer_id AND (admin.user_id = report.admin_id OR report.admin_id = 0) AND report.customer_id = ".$row['user_id']." GROUP BY report_id ORDER BY report_id DESC");   
                                 while ($row = mysqli_fetch_array($load)){
                                     if($row['stat'] === 'Belum Diproses'){
                                         echo '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
