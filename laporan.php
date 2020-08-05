@@ -30,7 +30,7 @@
                                             <tr> 
                                                 <th>No.</th>                                               
                                                 <th>Nama Pelanggan</th>
-                                                <th>Alamat</th>
+                                                <th>Lokasi</th>
                                                 <th>Keterangan</th>
                                                 <th>Waktu</th>
                                                 <th>Status</th>
@@ -38,30 +38,32 @@
                                             </tr>
                                         </thead>                                        
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Bank BNI</td>
-                                                <td>Jl. Monginsidi</td>
-                                                <td>Data tidak terkirim</td>
-                                                <td>2020-07-29 23:25:44</td>
-                                                <td>Belum Diproses</td>
-                                                <td>
+                                        <?php                                            
+                                            $load = mysqli_query($conn, "SELECT user.nama AS nama_cust, report.* from user, report GROUP BY report_id ORDER BY report_id DESC");   
+                                            while ($row = mysqli_fetch_array($load)){
+                                            echo '<tr>';
+                                                echo '<td>'.$row['report_id'].'</td>';
+                                                echo '<td>'.$row['nama_cust'].'</td>';
+                                                echo '<td>'.$row['lokasi'].'</td>';
+                                                echo '<td>'.$row['keterangan'].'</td>';
+                                                echo '<td>'.$row['waktu_lapor'].'</td>';
+                                                if($row['stat'] == 'Belum Diproses'){
+                                                    echo  '<td><span class="badge badge-danger">'.$row['stat'].'</span></td>'; 
+                                                }elseif($row['stat'] == 'Sedang Diproses'){
+                                                    echo  '<td><span class="badge badge-warning">'.$row['stat'].'</span></td>';                                                    
+                                                }elseif($row['stat'] == 'Selesai'){
+                                                    echo  '<td><span class="badge badge-success">'.$row['stat'].'</span></td>'; 
+                                                }else{
+                                                    echo  '<td><span class="badge badge-light">'.$row['stat'].'</span></td>';
+                                                } 
+                                                // echo '<td>'.$row['stat'].'</td>';
+                                                echo '<td>
                                                     <button type="button" class="btn btn-info btn-sm"><i class="fas fa-search"></i></button>
                                                     <button type="button" class="btn btn-success btn-sm"><i class="fas fa-download"></i></button>                                                    
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Indomaret</td>
-                                                <td>Jl. Pengayoman</td>
-                                                <td>Koneksi putus-putus</td>
-                                                <td>2020-07-29 23:25:44</td>
-                                                <td>Sedang Diproses</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info btn-sm"><i class="fas fa-search"></i></button>
-                                                    <button type="button" class="btn btn-success btn-sm"><i class="fas fa-download"></i></button>                                                    
-                                                </td>
-                                            </tr>
+                                                </td>';                                                
+                                            echo '</tr>';
+                                            }                      
+                                        ?>                                           
                                         </tbody>
                                     </table>
                                 </div>
