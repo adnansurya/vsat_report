@@ -59,7 +59,7 @@ if($_POST['role'] === 'admin'){
         if(empty($errors)==true){
                 
             
-            if(move_uploaded_file($file_tmp,"../image/".$newfilename)){
+            if(move_uploaded_file($file_tmp,"../report_img/".$newfilename)){
 
                 $result =  mysqli_query($conn, "UPDATE report SET 
                 tindakan='" . $_POST['tindakan'] . "', 
