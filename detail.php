@@ -68,7 +68,7 @@
                        
                         <?php 
                             if($role_session == 'admin' && $report['stat'] != 'Selesai'){
-                                echo '<div class="card mt-4">
+                                echo '<div class="card border-warning mt-4">
                                         <div class="card-body">  
                                             <div class="row">
                                                 <div class="col-md-12 mb-3">
@@ -160,39 +160,74 @@
                             }elseif($role_session == 'teknisi' && $report['stat'] != 'Selesai'){
                                 echo '<div class="card border-warning mt-4">
                                         <div class="card-header text-center">'.$report['nama_admin'].' <span class="badge badge-warning">Admin</span></div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <small>Jenis Gangguan</small>                                                                                                         
-                                                    <p>'.$report['jenis'].'</p>                                    
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <small>Jenis Gangguan</small>                                                                                                         
+                                                        <p>'.$report['jenis'].'</p>                                    
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">                                               
-                                                <div class="col-md-12">
-                                                    <small>List Perangkat :</small>
-                                                    <ul>';
+                                                <div class="row">                                               
+                                                    <div class="col-md-12">
+                                                        <small>List Perangkat :</small>
+                                                        <ul>';
 
-                                if($report['device_id'] != 0){
-                                    echo '<li>'.$report['nama_dev1'].'</li>';
-                                }else{
-                                    echo '<li> - </li>';
-                                }
-                                if($report['device2_id'] != 0){
-                                    echo '<li>'.$report['nama_dev2'].'</li>';
-                                }else{
-                                    echo '<li> - </li>';
-                                }
+                                                        if($report['device_id'] != 0){
+                                                            echo '<li>'.$report['nama_dev1'].'</li>';
+                                                        }else{
+                                                            echo '<li> - </li>';
+                                                        }
+                                                        if($report['device2_id'] != 0){
+                                                            echo '<li>'.$report['nama_dev2'].'</li>';
+                                                        }else{
+                                                            echo '<li> - </li>';
+                                                        }
 
-                                if($report['device3_id'] != 0){
-                                    echo '<li>'.$report['nama_dev3'].'</li>';
-                                }else{
-                                    echo '<li> - </li>';
-                                }
+                                                        if($report['device3_id'] != 0){
+                                                            echo '<li>'.$report['nama_dev3'].'</li>';
+                                                        }else{
+                                                            echo '<li> - </li>';
+                                                        }
+                                    
+                                    echo                '</ul>
+                                                    </div>
+                                                </div>                                                                         
+                                            </div>                           
+                                        </div>';
+
+
+                                    echo '<div class="card border-success mt-4">
+                                            <div class="card-body">
+                                            <form action="access/report_update.php" method="post" enctype="multipart/form-data">
+                                                <div class="form-row">
+                                                    <div class="col-md-12">
+                                                        <input type="hidden" name="user_id" value="'.$id_session.'">  
+                                                        <input type="hidden" name="role" value="'.$role_session.'">    
+                                                        <input type="hidden" name="report_id" value="'.$report['report_id'].'"> 
+                                                        <div class="form-group">
+                                                            <label class="small mb-1" for="exampleFormControlTextarea1">Tindakan</label>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="tindakan" rows="3" required></textarea>
+                                                        </div>
+                                                    </div>                                    
+                                                </div>                               
+                                                <div class="form-row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">                                                        
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" name="image" id="customFile">
+                                                                <label class="custom-file-label" for="customFile">Pilih File Gambar</label>
+                                                            </div>
+                                                        </div>
+                                                        <img id="blah" src="#" alt="Preview" class="img-thumbnail"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mt-4 mb-0"><button type="submit" name="submit" class="btn btn-primary btn-block">Simpan Laporan</a></div>
+                                            </form>                             
+                                            </div>                           
+                                        </div>';
+
+
                                 
-                                echo                '</ul></div>
-                                            </div>                                                                         
-                                        </div>                           
-                                    </div>';
                             }
                             
                                                         
@@ -205,5 +240,23 @@
             </div>
         </div>
         <?php include('partials/scripts.php'); ?>
+        <script>
+            function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#customFile").change(function() {
+                readURL(this);
+            });   
+        </script>
     </body>
 </html>
