@@ -30,15 +30,7 @@
     <title>Download Laporan </title>
 </head>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-          
-            <div class="d-flex w-100 justify-content-between mt-4 bg-light p-3">
-                <a class="navbar-brand" >Laporan - #<?php echo $report['report_id']; ?></a>
-                <button class="btn btn-primary" onclick="printLaporan()">Download</button>
-            </div>             
-        </div>        
-    </div>
+   
     <div class="row mt-4 mb-4">
         <div class="container border" id="forPrint">
             <div class="d-flex w-100 justify-content-between mt-4">
