@@ -30,13 +30,24 @@
     <title>Download Laporan </title>
 </head>
 <div class="container-fluid">
-   
+    <div class="row">
+        <div class="col-12">
+          
+            <div class="d-flex w-100 justify-content-between mt-4 bg-light p-3">
+                <a class="navbar-brand" >Laporan - #<?php echo $report['report_id']; ?></a>
+                <button class="btn btn-primary" onclick="printLaporan()">Print</button>
+            </div>             
+        </div>        
+    </div>
     <div class="row mt-4 mb-4">
-        <div class="container border" id="forPrint">
-            <div class="d-flex w-100 justify-content-between mt-4">
-                
-                <p><small>ID Laporan : </small>#<?php echo $report['report_id']; ?></p>
-                <p><small>Laporan Masuk : </small><?php echo $report['waktu_lapor']; ?></p>                
+        <div class="container border printed" id="forPrint">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p><small>ID Laporan : </small>#<?php echo $report['report_id']; ?></p>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <p><small>Laporan Masuk : </small><?php echo $report['waktu_lapor']; ?></p>       
+                </div>             
             </div>
             <hr>
             <small>Admin</small>
@@ -57,7 +68,7 @@
            
             <small>Tindakan</small>
             <p id="tindakanTxt"><?php echo $report['tindakan']; ?></p>
-            <div id="anu" class="text-center mt-2 mb-4">
+            <div class="text-center mt-2 mb-4">
                 <img id="gambarImg" src="<?php echo 'report_img/'.$report['gambar']; ?>" alt="Gambar" class="img-thumbnail"/>
             </div>
             
@@ -67,13 +78,17 @@
     <div id="elementH"></div>
 </div>
 <?php include('partials/scripts.php'); ?> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>           
+<script type="text/javascript" src="js/printThis.js"></script>
 <script>
 
-   function printLaporan(){
-       window.print();
-   }
-  
+    // $(document).ready(function() {
+
+        function printLaporan(){
+           $('.printed').printThis({
+               base : 'vsat_report'
+           });
+        } 
+    // });
 </script>
 </body>
 </html>
