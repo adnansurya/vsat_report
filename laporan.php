@@ -28,7 +28,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr> 
-                                                <th>No.</th>                                               
+                                                <th>ID</th>                                               
                                                 <th>Nama Pelanggan</th>
                                                 <th>Lokasi</th>
                                                 <th>Keterangan</th>
@@ -39,7 +39,13 @@
                                         </thead>                                        
                                         <tbody>
                                         <?php                                            
-                                            $load = mysqli_query($conn, "SELECT user.nama AS nama_cust, report.* from user, report GROUP BY report_id ORDER BY report_id DESC");   
+                                            $load = mysqli_query($conn, "SELECT cust.nama AS nama_cust, admin.nama AS nama_admin, tek.nama AS nama_tek, 
+                                            dev1.device_name AS nama_dev1, dev2.device_name AS nama_dev2, dev3.device_name AS nama_dev3, report.* 
+                                            from user cust, user admin, user tek, report, device dev1, device dev2, device dev3
+                                            WHERE (report.admin_id = admin.user_id OR report.admin_id = 0) AND
+                                            (report.teknisi_id = tek.user_id OR report.teknisi_id = 0) AND 
+                                            (report.customer_id = cust.user_id OR report.customer_id = 0)
+                                            GROUP BY report_id ORDER BY report_id DESC");   
                                             while ($row = mysqli_fetch_array($load)){
                                             echo '<tr>';
                                                 echo '<td>'.$row['report_id'].'</td>';
@@ -57,17 +63,98 @@
                                                     echo  '<td><span class="badge badge-light">'.$row['stat'].'</span></td>';
                                                 } 
                                                 // echo '<td>'.$row['stat'].'</td>';
-                                                echo '<td>
-                                                    <button type="button" class="btn btn-info btn-sm"><i class="fas fa-search"></i></button>
-                                                    <button type="button" class="btn btn-success btn-sm"><i class="fas fa-download"></i></button>                                                    
-                                                </td>';                                                
-                                            echo '</tr>';
+                                                echo '<td>';
+
+                                                if($row['stat'] == 'Belum Diproses'){
+                                                    echo '<button type="button" class="btn btn-light btn-sm disabled"><i class="fas fa-ban"></i></button>';
+                                                }else{
+                                                    echo '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal" 
+                                                    data-id="'.$row['report_id'].'" data-stat="'.$row['stat'].'" data-jenis="'.$row['jenis'].'"
+                                                    data-tindakan="'.$row['tindakan'].'" data-gambar="'.$row['gambar'].'" ';
+                                                    
+                                                    if($row['admin_id'] != 0){
+                                                        echo ' data-admin="'.$row['nama_admin'].'" ';
+                                                    }else{
+                                                        echo ' data-admin="-" ';
+                                                    }
+
+                                                    if($row['teknisi_id'] != 0){
+                                                        echo ' data-tek="'.$row['nama_tek'].'" ';
+                                                    }else{
+                                                        echo ' data-tek="-" ';
+                                                    }
+
+                                                    if($row['device_id'] != 0){
+                                                        echo ' data-dev1="'.$row['nama_dev1'].'" ';
+                                                    }else{
+                                                        echo ' data-dev1="-" ';
+                                                    }
+
+                                                    if($row['device2_id'] != 0){
+                                                        echo ' data-dev2="'.$row['nama_dev2'].'" ';
+                                                    }else{
+                                                        echo ' data-dev2="-" ';
+                                                    }
+
+                                                    if($row['device3_id'] != 0){
+                                                        echo ' data-dev3="'.$row['nama_dev3'].'" ';
+                                                    }else{
+                                                        echo ' data-dev3="-" ';
+                                                    }
+                                                    
+                                                    echo '><i class="fas fa-search"></i></button>';
+                                                }
+                                                    
+                                                if($row['stat'] == 'Selesai'){
+                                                    echo '<button type="button" class="btn btn-success btn-sm"><i class="fas fa-download"></i></button>';
+                                                }    
+                                                    
+                                                                                           
+                                            echo '</td></tr>';
                                             }                      
                                         ?>                                           
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Detail Laporan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <small>Admin</small>
+                                <p id="adminTxt"></p>
+                                <small>Jenis Gangguan</small>
+                                <p id="jenisTxt"></p>
+                                <small>List Perangkat</small>
+                                <ul>
+                                    <li id="dev1Txt"></li>
+                                    <li id="dev2Txt"></li>
+                                    <li id="dev3Txt"></li>
+                                </ul>
+                                <small>Teknisi</small>
+                                <p id="teknisiTxt"></p>
+                                            
+                                <div id="finishDiv">
+                                    <small>Tindakan</small>
+                                    <p id="tindakanTxt"></p>
+                                    <img id="gambarImg" src="#" alt="Gambar" class="img-thumbnail"/>
+                                </div>
+                                
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>                                
+                            </div>
+                            </div>
+                        </div>
                         </div>                       
                     </div>
                 </main>
@@ -80,6 +167,30 @@
         <script>
             $(document).ready(function() {
                 $('#dataTable').DataTable();
+
+                $('#detailModal').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget);
+                    var idLaporan = button.data('id');
+                    var stat = button.data('stat');
+                   
+                    var modal = $(this);
+                    modal.find('.modal-title').text('Data Laporan #' + idLaporan);                    
+                    modal.find('#adminTxt').text(button.data('admin'));
+                    modal.find('#jenisTxt').text(button.data('jenis'));
+                    modal.find('#dev1Txt').text(button.data('dev1'));
+                    modal.find('#dev2Txt').text(button.data('dev2'));
+                    modal.find('#dev3Txt').text(button.data('dev3'));
+                    modal.find('#teknisiTxt').text(button.data('tek'));
+
+                    if(stat == 'Selesai'){
+                        $('#finishDiv').css("display", "block");
+                        modal.find('#tindakanTxt').text(button.data('tindakan'));
+                        modal.find('#gambarImg').attr('src','report_img/'+button.data('gambar'));
+                    }else{
+                        $('#finishDiv').css("display", "none");
+                    }
+                   
+                })
             });
         </script>
     </body>
