@@ -29,7 +29,7 @@
                                         <thead>
                                             <tr> 
                                                 <th>ID</th>                                               
-                                                <th>Nama Pelanggan</th>
+                                                <th>Nama</th>
                                                 <th>Lokasi</th>
                                                 <th>Keterangan</th>
                                                 <th>Waktu</th>
@@ -106,7 +106,7 @@
                                                 }
                                                     
                                                 if($row['stat'] == 'Selesai'){
-                                                    echo '<button type="button" class="btn btn-success btn-sm"><i class="fas fa-download"></i></button>';
+                                                    echo '<a type="button" class="btn btn-success btn-sm" href="download.php?id='.$row['report_id'].'"><i class="fas fa-download"></i></a>';
                                                 }    
                                                     
                                                                                            
