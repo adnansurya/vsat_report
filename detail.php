@@ -1,29 +1,34 @@
+<?php 
+session_start();  
+include('partials/global.php') ?>
+<?php include('access/session.php');
+if(!($role_session == 'admin' || $role_session == 'teknisi')){                
+    header("location:index.php");                
+}
+
+if(!isset($_GET['id'])){
+    header("location:index.php");   
+}else{
+
+    if($role_session === 'admin'){
+        $report_sql = mysqli_query($conn,"SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* FROM user cust, user admin, report WHERE report.customer_id = cust.user_id AND( report.admin_id = admin.user_id OR report.admin_id = 0) AND report.report_id = '".$_GET['id']."' GROUP BY report_id");
+    }elseif($role_session === 'teknisi'){
+        $report_sql = mysqli_query($conn,"SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* , dev1.device_name as nama_dev1 , dev2.device_name as nama_dev2, dev3.device_name as nama_dev3 FROM user cust, user admin, report, device dev1, device dev2, device dev3 WHERE report.customer_id = cust.user_id AND report.admin_id = admin.user_id AND (report.device_id = dev1.device_id OR report.device_id = 0) AND (report.device2_id = dev2.device_id OR report.device2_id = 0) AND (report.device3_id = dev3.device_id OR report.device3_id = 0) AND report.report_id = '".$_GET['id']."' GROUP BY report_id");
+    }
+    
+
+    $report = mysqli_fetch_array($report_sql,MYSQLI_ASSOC);
+}
+?> 
+
+        
+        
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php 
-            include('partials/global.php'); 
-            include('partials/head.php'); 
-            include('access/session.php');
+        <?php include('partials/head.php'); ?>
 
-            if(!($role_session == 'admin' || $role_session == 'teknisi')){                
-                header("location:index.php");                
-            }
             
-            if(!isset($_GET['id'])){
-                header("location:index.php");   
-            }else{
-
-                if($role_session === 'admin'){
-                    $report_sql = mysqli_query($conn,"SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* FROM user cust, user admin, report WHERE report.customer_id = cust.user_id AND( report.admin_id = admin.user_id OR report.admin_id = 0) AND report.report_id = '".$_GET['id']."' GROUP BY report_id");
-                }elseif($role_session === 'teknisi'){
-                    $report_sql = mysqli_query($conn,"SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* , dev1.device_name as nama_dev1 , dev2.device_name as nama_dev2, dev3.device_name as nama_dev3 FROM user cust, user admin, report, device dev1, device dev2, device dev3 WHERE report.customer_id = cust.user_id AND report.admin_id = admin.user_id AND (report.device_id = dev1.device_id OR report.device_id = 0) AND (report.device2_id = dev2.device_id OR report.device2_id = 0) AND (report.device3_id = dev3.device_id OR report.device3_id = 0) AND report.report_id = '".$_GET['id']."' GROUP BY report_id");
-                }
-                
-      
-                $report = mysqli_fetch_array($report_sql,MYSQLI_ASSOC);
-            }
-        ?>
         
         <title><?php echo $webname; ?> - Detail Laporan</title>        
     </head>

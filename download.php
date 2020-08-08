@@ -1,29 +1,31 @@
+<?php 
+session_start();  
+include('partials/global.php') ?>
+<?php include('access/session.php'); 
+if(!($role_session == 'admin' || $role_session == 'teknisi')){                
+    header("location:index.php");                
+}
+
+if(!isset($_GET['id'])){
+    header("location:index.php");   
+}else{
+   
+    $report_sql = mysqli_query($conn,"SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , tek.nama as 'nama_tek', report.* , 
+    dev1.device_name as nama_dev1 , dev2.device_name as nama_dev2, dev3.device_name as nama_dev3 
+    FROM user cust, user admin, user tek, report, device dev1, device dev2, device dev3 WHERE report.customer_id = cust.user_id AND report.admin_id = admin.user_id AND (report.device_id = dev1.device_id OR report.device_id = 0) AND (report.device2_id = dev2.device_id OR report.device2_id = 0) AND (report.device3_id = dev3.device_id OR report.device3_id = 0) AND report.report_id = '".$_GET['id']."' GROUP BY report_id");
+
+    $report = mysqli_fetch_array($report_sql,MYSQLI_ASSOC);
+
+    if($report['stat'] != "Selesai"){
+        header("location:index.php");    
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php 
-        include('partials/global.php'); 
+    <?php         
         include('partials/head.php'); 
-        include('access/session.php');
-
-        if(!($role_session == 'admin' || $role_session == 'teknisi')){                
-            header("location:index.php");                
-        }
-        
-        if(!isset($_GET['id'])){
-            header("location:index.php");   
-        }else{
-           
-            $report_sql = mysqli_query($conn,"SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , tek.nama as 'nama_tek', report.* , 
-            dev1.device_name as nama_dev1 , dev2.device_name as nama_dev2, dev3.device_name as nama_dev3 
-            FROM user cust, user admin, user tek, report, device dev1, device dev2, device dev3 WHERE report.customer_id = cust.user_id AND report.admin_id = admin.user_id AND (report.device_id = dev1.device_id OR report.device_id = 0) AND (report.device2_id = dev2.device_id OR report.device2_id = 0) AND (report.device3_id = dev3.device_id OR report.device3_id = 0) AND report.report_id = '".$_GET['id']."' GROUP BY report_id");
-
-            $report = mysqli_fetch_array($report_sql,MYSQLI_ASSOC);
-
-            if($report['stat'] != "Selesai"){
-                header("location:index.php");    
-            }
-        }
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

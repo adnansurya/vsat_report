@@ -1,14 +1,15 @@
+<?php 
+session_start();  
+include('partials/global.php') ?>
+<?php include('access/session.php');
+ if(!($role_session == 'admin' || $role_session == 'teknisi')){                
+    header("location:index.php");                
+} ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php 
-            include('partials/global.php');             
-            include('partials/head.php'); 
-            include('access/session.php');
-
-            if(!($role_session == 'admin' || $role_session == 'teknisi')){                
-                header("location:index.php");                
-            } 
+        <?php                        
+            include('partials/head.php');   
         ?>
         
         <title><?php echo $webname; ?> - Blank</title> 

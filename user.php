@@ -1,14 +1,19 @@
+<?php 
+session_start();  
+include('partials/global.php') ?>
+<?php include('access/session.php');
+if(!($role_session == 'superuser')){                
+    header("location:index.php");                
+} ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
          <?php 
-            include('partials/global.php'); 
+            
             include('partials/head.php'); 
-            include('access/session.php');
+          
 
-            if(!($role_session == 'superuser')){                
-                header("location:index.php");                
-            } 
+            
         ?>
         <title><?php echo $webname; ?> - Daftar User</title>        
     </head>

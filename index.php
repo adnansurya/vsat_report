@@ -1,10 +1,14 @@
+<?php 
+session_start();  
+include('partials/global.php') ?>
+<?php include('access/session.php'); ?>
+
+        
+        
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php include('partials/global.php') ?>
         <?php include('partials/head.php'); ?>
-        <?php include('access/session.php'); ?>
-        
         <title><?php echo $webname; ?> - Blank</title>        
     </head>
     <body>

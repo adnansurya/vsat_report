@@ -1,6 +1,7 @@
 <?php 
+    session_start(); 
     include("access/db_access.php");
-    session_start();
+    
 
     if(isset($_SESSION['login_user'])){
         header("location:index.php");        
