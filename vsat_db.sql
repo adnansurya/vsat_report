@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 05, 2020 at 11:22 PM
+-- Generation Time: Aug 08, 2020 at 10:59 PM
 -- Server version: 10.1.44-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.6
 
@@ -31,15 +31,6 @@ CREATE TABLE `device` (
   `device_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `device`
---
-
-INSERT INTO `device` (`device_id`, `device_name`) VALUES
-(16, 'shalo'),
-(17, 'anu'),
-(18, 'OTAK-01');
-
 -- --------------------------------------------------------
 
 --
@@ -64,15 +55,6 @@ CREATE TABLE `report` (
   `waktu_selesai` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `report`
---
-
-INSERT INTO `report` (`report_id`, `customer_id`, `lokasi`, `keterangan`, `waktu_lapor`, `stat`, `admin_id`, `jenis`, `device_id`, `device2_id`, `device3_id`, `teknisi_id`, `tindakan`, `gambar`, `waktu_selesai`) VALUES
-(1, 1, 'ajsk didosm dskld oioudsfpuoids fduifopdufo dfidofpuid', 'beb fyduisouys jflhsjlhfs djfhlkjshjf djslhfjsld dhfkjslhfs sjfdlsjhfjdsk dshfjslhfjdslkfh sdjflhsfj', '2020-08-02 00:55:04', 'Sedang Diproses', 2, 'u', 16, 0, 0, 0, '', '', '0000-00-00 00:00:00'),
-(2, 1, 'Jl. Toddopuli 7 no. 23', 'Otaknya rusak', '2020-08-04 19:42:20', 'Selesai', 2, 'hahaha, joe', 18, 17, 16, 3, 'asasa', '1596637731-2.png', '2020-08-05 22:28:51'),
-(3, 1, 'a', 'b', '2020-08-04 23:05:20', 'Sedang Diproses', 2, 'anu rusak', 18, 17, 18, 3, '', '', '0000-00-00 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -87,16 +69,6 @@ CREATE TABLE `user` (
   `role` varchar(20) NOT NULL,
   `pass` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `nama`, `email`, `hp`, `role`, `pass`) VALUES
-(1, 'Tester', 'tester1@test.com', '08123456789', 'customer', '1234'),
-(2, 'Tester 2', 'tester2@test.com', '082222222222', 'admin', '4321'),
-(3, 'Teknisi 1', 'teknisi1@test.com', '080808080808', 'teknisi', '1111'),
-(4, 'Teknisi 2', 'teknisi2@test.com', '080707070707', 'teknisi', '1111');
 
 --
 -- Indexes for dumped tables
@@ -128,17 +100,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `device`
 --
 ALTER TABLE `device`
-  MODIFY `device_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `device_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
