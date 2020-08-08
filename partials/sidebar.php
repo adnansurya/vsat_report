@@ -45,6 +45,12 @@
                             <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
                             Data Laporan
                         </a>';
+                    }else if($role_session == "superuser"){
+                        echo '<div class="sb-sidenav-menu-heading">User</div>
+                        <a class="nav-link" href="user.php">
+                            <div class="sb-nav-link-icon"><i class="far fa-file"></i></div>
+                            User
+                        </a>';
                     }
                 ?>            
             </div>

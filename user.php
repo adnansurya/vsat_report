@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php 
-            include('partials/global.php');             
+         <?php 
+            include('partials/global.php'); 
             include('partials/head.php'); 
             include('access/session.php');
 
-            if(!($role_session == 'admin')){                
+            if(!($role_session == 'superuser')){                
                 header("location:index.php");                
             } 
-            
-            
         ?>
-        
-        <title><?php echo $webname; ?> - Daftar Perangkat</title>        
+        <title><?php echo $webname; ?> - Daftar User</title>        
     </head>
     <body>
         <?php include('partials/topbar.php'); ?>
@@ -27,20 +24,28 @@
                         <div class="card mb-4 mt-4">                           
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="deviceTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr> 
-                                                <th>No.</th>
-                                                <th>Nama Perangkat</th>
+                                                <th>ID</th>
+                                                <th>Nama</th>
+                                                <th>Email</th>
+                                                <th>HP</th>
+                                                <th>Role</th>  
+                                                <th>Password</th>                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php 
-                                                $load = mysqli_query($conn, "SELECT * FROM device ORDER BY device_id");   
+                                                $load = mysqli_query($conn, "SELECT * FROM user ORDER BY user_id");   
                                                 while ($row = mysqli_fetch_array($load)){
                                                     echo '<tr>
-                                                            <td>'.$row['device_id'].'</td>
-                                                            <td>'.$row['device_name'].'</td>
+                                                            <td>'.$row['user_id'].'</td>
+                                                            <td>'.$row['nama'].'</td>
+                                                            <td>'.$row['email'].'</td>
+                                                            <td>'.$row['hp'].'</td>
+                                                            <td>'.$row['role'].'</td>
+                                                            <td>'.$row['pass'].'</td>
                                                         </tr>';
                                                 }
                                             ?>
@@ -53,10 +58,28 @@
                         <div class="card mb-4 mt-4">                           
                             <div class="card-body">
                                 <h5>Tambah Baru</h5>
-                                <form action="access/device_new.php" method="post">
+                                <form action="access/user_new.php" method="post" id=newUser>
                                     <div class="form-group">                                        
-                                        <input class="form-control py-4" id="name" type="text" placeholder="Masukkan Nama Perangkat" name="device_name" required>
-                                    </div>                                                                               
+                                        <input class="form-control py-4" type="text" placeholder="Masukkan Nama Pengguna" name="nama" required>
+                                    </div> 
+                                    <div class="form-group">                                        
+                                        <input class="form-control py-4" type="text" placeholder="Masukkan Email " name="email" required>
+                                    </div> 
+                                    <div class="form-group">                                        
+                                        <input class="form-control py-4" type="text" placeholder="Masukkan Password" name="password" required>
+                                    </div>  
+                                    <div class="form-group">                                        
+                                        <input class="form-control py-4" type="text" placeholder="Masukkan No. HP" name="hp" required>
+                                    </div> 
+                                    <div class="form-group">                                                                                
+                                        <small>Role</small>
+                                        <select form="newUser" name="role" class="custom-select"> ';
+                                            <option value="customer">Customer</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="teknisi">Teknisi</option>
+                                        </select>                                        
+                                    </div>                                  
+                                                                                                                 
                                     <div class="form-group text-right mt-4 mb-0">                                                
                                         <button class="btn btn-primary" type="submit">Tambahkan</button>
                                     </div>
@@ -71,12 +94,18 @@
         <?php include('partials/scripts.php'); ?>
         <script src="js/jquery.tabledit.js"></script>
         <script>
-              $('#deviceTable').Tabledit({
-                    url: 'access/device_update.php',
+              $('#userTable').Tabledit({
+                    url: 'access/user_update.php',
                     columns: {
-                        identifier: [0, 'device_id'],
+                        identifier: [0, 'user_id'],
                         restoreButton: false,                        
-                        editable: [[1, 'device_name']]
+                        editable: [
+                            [1, 'nama'],
+                            [2, 'email'],
+                            [3, 'hp'],
+                            [4, 'role'],
+                            [5, 'pass']
+                        ]
                     },buttons: {
                         delete: {
                             class: 'btn btn-sm btn-danger',
