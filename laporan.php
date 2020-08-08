@@ -39,12 +39,13 @@
                                         </thead>                                        
                                         <tbody>
                                         <?php                                            
-                                            $load = mysqli_query($conn, "SELECT cust.nama AS nama_cust, admin.nama AS nama_admin, tek.nama AS nama_tek, 
-                                            dev1.device_name AS nama_dev1, dev2.device_name AS nama_dev2, dev3.device_name AS nama_dev3, report.* 
-                                            from user cust, user admin, user tek, report, device dev1, device dev2, device dev3
+                                            $load = mysqli_query($conn, "SELECT cust.nama AS nama_cust, admin.nama AS nama_admin, tek.nama AS nama_tek,dev1.device_name AS nama_dev1, dev2.device_name AS nama_dev2, dev3.device_name AS nama_dev3, report.* from user cust, user admin, user tek, report, device dev1, device dev2, device dev3
                                             WHERE (report.admin_id = admin.user_id OR report.admin_id = 0) AND
                                             (report.teknisi_id = tek.user_id OR report.teknisi_id = 0) AND 
-                                            (report.customer_id = cust.user_id OR report.customer_id = 0)
+                                            (report.customer_id = cust.user_id OR report.customer_id = 0) AND
+                                            (report.device_id = dev1.device_id OR report.device_id = 0) AND
+                                            (report.device2_id = dev2.device_id OR report.device2_id = 0) AND
+                                            (report.device3_id = dev3.device_id OR report.device3_id = 0)                                            
                                             GROUP BY report_id ORDER BY report_id DESC");   
                                             while ($row = mysqli_fetch_array($load)){
                                             echo '<tr>';

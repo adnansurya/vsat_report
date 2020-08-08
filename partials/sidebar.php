@@ -11,7 +11,6 @@
                 
                 <?php 
                      
-                
                     if($role_session == "customer"){
                         echo '<div class="sb-sidenav-menu-heading">Customer</div>
                         <a class="nav-link" href="lapor.php">
@@ -40,7 +39,7 @@
                         echo '<div class="sb-sidenav-menu-heading">Teknisi</div>
                         <a class="nav-link" href="proses.php">
                             <div class="sb-nav-link-icon"><i class="far fa-file"></i></div>
-                            Laporan Masuk
+                            Proses Gangguan
                         </a>
                         <a class="nav-link" href="laporan.php">
                             <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
