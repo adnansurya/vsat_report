@@ -9,7 +9,7 @@ include('partials/global.php') ?>
 <html lang="en">
     <head>
         <?php include('partials/head.php'); ?>
-        <title><?php echo $webname; ?> - Blank</title>        
+        <title><?php echo $webname; ?> - Dashboard</title>        
     </head>
     <body>
         <?php include('partials/topbar.php'); ?>

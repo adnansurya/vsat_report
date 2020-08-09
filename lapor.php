@@ -19,7 +19,7 @@ include('partials/global.php') ?>
             
         ?>
         
-        <title><?php echo $webname; ?> - Blank</title>        
+        <title><?php echo $webname; ?> - Lapor</title>        
     </head>
     <body>
         <?php include('partials/topbar.php'); ?>

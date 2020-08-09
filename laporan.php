@@ -12,7 +12,7 @@ include('partials/global.php') ?>
             include('partials/head.php');   
         ?>
         
-        <title><?php echo $webname; ?> - Blank</title> 
+        <title><?php echo $webname; ?> - Data Laporan</title> 
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />       
     </head>
     <body>

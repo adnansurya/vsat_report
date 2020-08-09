@@ -1,14 +1,14 @@
 <?php 
 session_start();  
 include('partials/global.php') ?>
-<?php include('access/session.php');
+<?php 
  include('access/session.php');
 
  if($role_session != 'customer'){
      header("location: index.php");
  } ?>
 
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <?php           

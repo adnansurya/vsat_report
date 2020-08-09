@@ -16,7 +16,7 @@ if(!($role_session == 'admin' || $role_session == 'teknisi')){
 
         ?>
         
-        <title><?php echo $webname; ?> - Blank</title>        
+        <title><?php echo $webname; ?> - Proses</title>        
     </head>
     <body>
         <?php include('partials/topbar.php'); ?>
