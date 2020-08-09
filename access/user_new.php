@@ -1,4 +1,5 @@
 <?php
+session_start();  
 include('session.php');
 if(!$role_session == 'superuser'){                
     echo 'Hanya bisa dilakukan oleh Super User';            

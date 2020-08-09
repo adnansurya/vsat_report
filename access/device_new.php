@@ -1,4 +1,5 @@
 <?php
+session_start();  
 include('session.php');
 if(isset($_POST['device_name'])) {
     $device_name = mysqli_real_escape_string($conn,$_POST['device_name']);
