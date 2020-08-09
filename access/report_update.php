@@ -2,6 +2,8 @@
 session_start();  
 include('session.php');
 
+
+
 if($_POST['role'] === 'admin'){
 
     if(isset($_POST['role']) && isset($_POST['device']) && isset($_POST['device2']) && isset($_POST['device3']) && isset($_POST['jenis']) && isset($_POST['teknisi']) && isset($_POST['report_id']) && isset($_POST['user_id'])){
@@ -14,24 +16,16 @@ if($_POST['role'] === 'admin'){
         jenis='" . $_POST['jenis'] . "',  
         admin_id='" . $_POST['user_id'] . "',
         teknisi_id='" . $_POST['teknisi'] . "', stat='Sedang Diproses' WHERE report_id='" . $_POST['report_id'] . "'");
-        if($result){
-            header("location: ../proses.php");    
-        }else{
-            echo 'Gagal update data';
+        if(!$result){
+            $errors[] = 'Gagal update data';
         }
     }else{
 
-        echo 'Data tidak lengkap';        
+        $errors[] = 'Data tidak lengkap';        
     
     }
  
 }elseif($_POST['role'] === 'teknisi'){
-
-    echo $_POST['role'];
-    echo $_POST['report_id'];
-    echo $_POST['user_id'];
-    echo $_POST['tindakan'];
-    echo $_FILES["image"]["name"];
 
 
 
@@ -41,7 +35,8 @@ if($_POST['role'] === 'admin'){
         $file_size =$_FILES['image']['size'];
         $file_tmp =$_FILES['image']['tmp_name'];
         $file_type=$_FILES['image']['type'];
-        $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+        $ext_arr = explode('.',$file_name);
+        $file_ext=strtolower(end($ext_arr));
     
         $temp = explode(".", $file_name);
         $newfilename = $timestamp .'-'.$_POST['report_id']. '.' . end($temp);
@@ -67,32 +62,37 @@ if($_POST['role'] === 'admin'){
                 waktu_selesai='" . $waktu . "',               
                 stat='Selesai' 
                 WHERE report_id='" . $_POST['report_id'] . "' AND teknisi_id='" . $_POST['user_id'] . "'");
-                if($result){
-                    header("location: ../proses.php");    
-                }else{
-                    echo 'Gagal update data';
+                if(!$result){
+                    $errors[]= 'Gagal update data';
                 }
             }else{
-                echo "Kesalahan Upload File";
+                $errors[]= "Kesalahan Upload File";
             }
     
             
             
-        }else{
-            print_r($errors);
-            echo $errors;
         }
       
         
     }else{
 
-        echo 'Data tidak lengkap';        
+        $errors[]= 'Data tidak lengkap';        
     
     }
 
 }else{
 
-    echo "Role tidak diketahui";        
+    $errors[]= "Role tidak diketahui";        
+}
+
+if(empty($errors)==true){
+
+    header("location: ../proses.php");   
+    die(); 
+
+}else{
+    print_r($errors[0]);
+    // echo $errors;
 }
 
 ?>

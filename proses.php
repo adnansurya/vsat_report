@@ -29,9 +29,21 @@ if(!($role_session == 'admin' || $role_session == 'teknisi')){
                         <div class="mt-4 list-group">
                             <?php 
                             if($role_session === 'admin'){
-                                $load = mysqli_query($conn, "SELECT tek.nama as 'nama_tek', cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* FROM user cust, user admin, user tek, report WHERE report.customer_id = cust.user_id AND (report.admin_id = admin.user_id OR report.admin_id = 0)  AND (report.teknisi_id = tek.user_id OR report.teknisi_id = 0) AND (report.stat = 'Belum Diproses' OR report.stat = 'Sedang Diproses') GROUP BY report_id ORDER BY report_id DESC ");   
+                                $load = mysqli_query($conn, "SELECT tek.nama as 'nama_tek', cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* 
+                                FROM user cust, user admin, user tek, report 
+                                WHERE report.customer_id = cust.user_id 
+                                AND (report.admin_id = admin.user_id OR report.admin_id = 0)  
+                                AND (report.teknisi_id = tek.user_id OR report.teknisi_id = 0) 
+                                AND (report.stat = 'Belum Diproses' OR report.stat = 'Sedang Diproses') 
+                                GROUP BY report_id ORDER BY report_id DESC ");   
                             }elseif($role_session === 'teknisi'){
-                                $load = mysqli_query($conn, "SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* FROM user cust, user admin, report WHERE report.customer_id = cust.user_id AND (report.admin_id = admin.user_id OR report.admin_id = 0)   AND report.teknisi_id = ".$id_session." AND  report.stat = 'Sedang Diproses' ORDER BY report_id DESC");  
+                                $load = mysqli_query($conn, "SELECT tek.nama as 'nama_tek', cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* 
+                                FROM user cust, user admin, user tek, report 
+                                WHERE report.customer_id = cust.user_id 
+                                AND (report.admin_id = admin.user_id OR report.admin_id = 0)   
+                                AND (report.teknisi_id = tek.user_id OR report.teknisi_id = 0) 
+                                AND report.teknisi_id = ".$id_session." AND  
+                                report.stat = 'Sedang Diproses' ORDER BY report_id DESC");  
                             }
                             
                             while ($row = mysqli_fetch_array($load)){
@@ -59,7 +71,7 @@ if(!($role_session == 'admin' || $role_session == 'teknisi')){
                                                 echo  '<span class="badge badge-danger">'.$row['stat'].'</span>'; 
                                             }elseif($row['stat'] == 'Sedang Diproses'){
                                                 echo  '<span class="badge badge-warning">'.$row['nama_admin'].'</span>';
-                                                if($row['teknisi_id']!= 0){
+                                                if($row['teknisi_id'] !== 0){
                                                     echo '<span class="badge badge-success ml-1">'.$row['nama_tek'].'</spann>';
                                                 } 
                                             }elseif($row['stat'] == 'Selesai'){

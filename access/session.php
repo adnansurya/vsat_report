@@ -5,7 +5,7 @@
    
    
    if(!isset($_SESSION['login_email'])){
-      header("location:login.php");
+      header("location:login.php");      
       die();
    }else{
       $email_check = $_SESSION['login_email'];
