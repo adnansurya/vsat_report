@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 09, 2020 at 08:05 AM
+-- Generation Time: Aug 11, 2020 at 02:40 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.12
 
@@ -33,6 +33,21 @@ CREATE TABLE `device` (
   `device_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `device`
+--
+
+INSERT INTO `device` (`device_id`, `device_name`) VALUES
+(1, 'Modem'),
+(2, 'LNB'),
+(3, 'BUC'),
+(4, 'Adaptor'),
+(5, 'Antena Dish'),
+(6, 'Pedestal'),
+(7, 'Canister'),
+(8, 'Feed Support'),
+(9, 'Kabel Coaxial');
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +68,8 @@ CREATE TABLE `report` (
   `device3_id` int(6) NOT NULL DEFAULT 0,
   `teknisi_id` int(11) NOT NULL DEFAULT 0,
   `tindakan` varchar(200) DEFAULT NULL,
+  `sinyal` int(5) DEFAULT NULL,
+  `terdampak` varchar(50) DEFAULT NULL,
   `gambar` varchar(50) DEFAULT NULL,
   `waktu_selesai` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -61,8 +78,17 @@ CREATE TABLE `report` (
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`report_id`, `customer_id`, `lokasi`, `keterangan`, `waktu_lapor`, `stat`, `admin_id`, `jenis`, `device_id`, `device2_id`, `device3_id`, `teknisi_id`, `tindakan`, `gambar`, `waktu_selesai`) VALUES
-(1, 2, 'lapangan', 'mantap', '2020-08-09 16:04:29', 'Belum Diproses', 0, NULL, 0, 0, 0, 0, NULL, NULL, NULL);
+INSERT INTO `report` (`report_id`, `customer_id`, `lokasi`, `keterangan`, `waktu_lapor`, `stat`, `admin_id`, `jenis`, `device_id`, `device2_id`, `device3_id`, `teknisi_id`, `tindakan`, `sinyal`, `terdampak`, `gambar`, `waktu_selesai`) VALUES
+(1, 2, 'lapangan', 'mantap', '2020-08-09 16:04:29', 'Selesai', 5, 'Satelit ', 7, 4, 6, 4, 'Oke', NULL, NULL, '1596970121-1.jpg', '2020-08-09 18:48:41'),
+(2, 3, 'Jl. Adhyaksa No.1', 'Antena rubuh', '2020-08-09 16:05:58', 'Selesai', 5, 'Antena rubuh', 5, 7, 6, 4, 'Penggantian badan antena', NULL, NULL, '1596960778-2.jpg', '2020-08-09 16:12:58'),
+(3, 3, 'Jl. AP Pettarani', 'Kabel putus', '2020-08-09 18:35:13', 'Selesai', 5, 'Kabel putus', 9, 0, 0, 4, 'Ganti kabel', NULL, NULL, '1596970296-3.jpg', '2020-08-09 18:51:36'),
+(4, 3, 'Lorong 9', 'Got mampet', '2020-08-09 18:49:29', 'Selesai', 5, 'test', 6, 1, 2, 4, 'test lagi', NULL, NULL, '1596970593-4.jpeg', '2020-08-09 18:56:33'),
+(5, 2, 'halo', 'testing', '2020-08-09 19:03:23', 'Selesai', 5, 'kuy', 9, 0, 0, 4, 'oioi', NULL, NULL, '1596971079-5.png', '2020-08-09 19:04:39'),
+(6, 2, 'report', 'fix bug', '2020-08-09 19:11:42', 'Selesai', 5, 'oi', 3, 0, 0, 4, 'hmhmhm', NULL, NULL, '1596971717-6.png', '2020-08-09 19:15:17'),
+(7, 2, 'lokasi', 'final test', '2020-08-09 19:18:00', 'Selesai', 5, 'feed', 8, 0, 0, 4, 'kokoko', NULL, NULL, '1596971941-7.png', '2020-08-09 19:19:01'),
+(8, 3, 'Jl. Batua Raya', 'Sembarang', '2020-08-09 19:23:16', 'Selesai', 5, 'Tidak ada', 1, 0, 0, 4, 'Ganti skin', NULL, NULL, '1596972383-8.jpg', '2020-08-09 19:26:23'),
+(9, 3, 'Jl. Hertasning', 'Overheat', '2020-08-10 18:39:17', 'Selesai', 5, 'Modem', 4, 1, 0, 4, 'ganti modem', NULL, NULL, '1597057859-9.jpg', '2020-08-10 19:10:59'),
+(10, 3, 'Lorong 7', 'Konslet', '2020-08-10 19:34:37', 'Sedang Diproses', 5, 'Kelistrikan', 4, 0, 0, 4, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -120,13 +146,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `device`
 --
 ALTER TABLE `device`
-  MODIFY `device_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `device_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
