@@ -72,7 +72,8 @@ include('partials/global.php') ?>
                                                 }else{
                                                     echo '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal" 
                                                     data-id="'.$row['report_id'].'" data-stat="'.$row['stat'].'" data-jenis="'.$row['jenis'].'"
-                                                    data-tindakan="'.$row['tindakan'].'" data-gambar="'.$row['gambar'].'" ';
+                                                    data-tindakan="'.$row['tindakan'].'" data-sinyal="'.$row['sinyal'].'" 
+                                                    data-terdampak="'.$row['terdampak'].'" data-gambar="'.$row['gambar'].'" ';
                                                     
                                                     if($row['admin_id'] != 0){
                                                         echo ' data-admin="'.$row['nama_admin'].'" ';
@@ -143,10 +144,15 @@ include('partials/global.php') ?>
                                 </ul>
                                 <small>Teknisi</small>
                                 <p id="teknisiTxt"></p>
+                               
                                             
                                 <div id="finishDiv">
                                     <small>Tindakan</small>
                                     <p id="tindakanTxt"></p>
+                                    <small>Signal Strength</small>
+                                    <p id="sinyalTxt"></p>
+                                    <small>Perangkat Terdampak</small>
+                                    <p id="terdampakTxt"></p>
                                     <img id="gambarImg" src="#" alt="Gambar" class="img-thumbnail"/>
                                 </div>
                                 
@@ -182,10 +188,12 @@ include('partials/global.php') ?>
                     modal.find('#dev1Txt').text(button.data('dev1'));
                     modal.find('#dev2Txt').text(button.data('dev2'));
                     modal.find('#dev3Txt').text(button.data('dev3'));
-                    modal.find('#teknisiTxt').text(button.data('tek'));
+                    modal.find('#teknisiTxt').text(button.data('tek'));                    
 
                     if(stat == 'Selesai'){
                         $('#finishDiv').css("display", "block");
+                        modal.find('#sinyalTxt').text(button.data('sinyal'));
+                        modal.find('#terdampakTxt').text(button.data('terdampak'));
                         modal.find('#tindakanTxt').text(button.data('tindakan'));
                         modal.find('#gambarImg').attr('src','report_img/'+button.data('gambar'));
                     }else{

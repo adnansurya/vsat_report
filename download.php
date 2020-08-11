@@ -70,6 +70,11 @@ if(!isset($_GET['id'])){
            
             <small>Tindakan</small>
             <p id="tindakanTxt"><?php echo $report['tindakan']; ?></p>
+            <small>Signal Strength</small>
+            <p id="sinyalTxt"><?php echo $report['sinyal']; ?></p>
+            <small>Perangkat Terdampak</small>
+            <p id="terdampakTxt"><?php echo $report['terdampak']; ?></p>
+
             <div class="text-center mt-2 mb-4">
                 <img id="gambarImg" src="<?php echo 'report_img/'.$report['gambar']; ?>" alt="Gambar" class="img-thumbnail"/>
             </div>

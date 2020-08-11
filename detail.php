@@ -239,7 +239,19 @@ if(!isset($_GET['id'])){
                                                             <textarea class="form-control" id="exampleFormControlTextarea1" name="tindakan" rows="3" required></textarea>
                                                         </div>
                                                     </div>                                    
-                                                </div>                               
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="number" placeholder="Signal Strength" name="sinyal" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="text" placeholder="Perangkat Terdampak" name="terdampak" required>
+                                                        </div>
+                                                    </div>
+                                                </div>                              
                                                 <div class="form-row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">                                                        

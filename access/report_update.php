@@ -29,7 +29,7 @@ if($_POST['role'] === 'admin'){
 
 
 
-    if(isset($_POST['role']) && isset($_POST['report_id']) && isset($_POST['user_id']) && isset($_POST['tindakan']) && !empty($_FILES["image"]["name"])){
+    if(isset($_POST['role']) && isset($_POST['report_id']) && isset($_POST['user_id']) && isset($_POST['tindakan']) && isset($_POST['terdampak']) && isset($_POST['sinyal']) && !empty($_FILES["image"]["name"])){
 
         $file_name = $_FILES['image']['name'];
         $file_size =$_FILES['image']['size'];
@@ -58,6 +58,8 @@ if($_POST['role'] === 'admin'){
 
                 $result =  mysqli_query($conn, "UPDATE report SET 
                 tindakan='" . $_POST['tindakan'] . "', 
+                terdampak='" . $_POST['terdampak'] . "', 
+                sinyal='" . $_POST['sinyal'] . "', 
                 gambar='" . $newfilename . "', 
                 waktu_selesai='" . $waktu . "',               
                 stat='Selesai' 
