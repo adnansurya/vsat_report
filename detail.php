@@ -27,9 +27,6 @@ if(!isset($_GET['id'])){
 <html lang="en">
     <head>
         <?php include('partials/head.php'); ?>
-
-            
-        
         <title><?php echo $webname; ?> - Detail Laporan</title>        
     </head>
     <body>
@@ -39,7 +36,21 @@ if(!isset($_GET['id'])){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Detail Laporan</h1>                        
+                        <div class="row mt-4">
+                            <div class="col-md-8">
+                                <h1>Detail Laporan</h1>                                                    
+                            </div>
+                            <?php
+                                if($role_session === 'admin'){
+                                echo '<div class="col-md-4 text-md-right">
+                                        <a href="access/delete_report.php?id='.$report['report_id'].'" class="btn btn-danger mt-3 btn-sm"><i class="fas fa-trash"></i> HAPUS</a>
+                                    </div>';                                    
+                                }
+                            ?>
+                            
+                            
+                        </div>
+                                
                         <div class="card mt-4">
                             <div class="card-body">
                                 <div class="d-flex w-100 justify-content-between">
