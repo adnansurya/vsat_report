@@ -176,7 +176,17 @@ if(!isset($_GET['id'])){
                                                     <input type="hidden" name="report_id" value="'.$report['report_id'].'"> 
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="exampleFormControlTextarea1">Jenis Gangguan</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="jenis" rows="2" required>'.$report['jenis'].'</textarea>
+                                                        <select name="jenis" class="custom-select">
+                                                        <option value="Transmit" ';
+                                                        if($report['jenis'] == "Transmit") {echo 'selected';} 
+                                                        echo '>Transmit</option>
+                                                        <option value="Receive" ';
+                                                        if($report['jenis'] == "Receive") {echo 'selected';} 
+                                                        echo '>Receive</option>
+                                                        <option value="Fisik" ';
+                                                        if($report['jenis'] == "Fisik") {echo 'selected';} 
+                                                        echo '>Fisik</option>
+                                                        </select>
                                                     </div>
                                                     <button type="submit" class="btn btn-info btn-block">PROSES</button>                         
                                                 </form>

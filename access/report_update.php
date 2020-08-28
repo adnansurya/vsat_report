@@ -42,7 +42,8 @@ if($_POST['role'] === 'admin'){
                 
                 $pesan = "Laporan Baru!".PHP_EOL.PHP_EOL." Nama Customer : ". $getReport['nama_cust']
                 .PHP_EOL." Waktu : ". $getReport['waktu_lapor']
-                .PHP_EOL." Alamat : ". $getReport['lokasi']                    
+                .PHP_EOL." Alamat : ". $getReport['lokasi']    
+                .PHP_EOL." Jenis Gangguan : ". $getReport['jenis']                    
                 .PHP_EOL." Keterangan : ". $getReport['keterangan']    
                 .PHP_EOL.PHP_EOL." List Perangkat : "  
                 .PHP_EOL."- ". $dev1   
