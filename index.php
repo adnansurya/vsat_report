@@ -33,7 +33,7 @@ include('partials/global.php') ?>
                                 <p class="mb-0">
                                     <h4>Kode Error TX 3</h4> 
                                     <div class="text-center mt-2 mb-4">
-                                        <img src="assets/img/tx3.jpg" alt="Kode Error Tx 3" srcset="">
+                                        <img src="assets/img/tx3.jpg" alt="Kode Error Tx 3" srcset=""  class="img-fluid">
                                     </div>
                                     <h6>Penyebab :</h6> 
                                     <p>Pada penjelasan modem kode error 3 mengindikasikan bahwa transmitter tidak bisa memancar karena tidak dapat berkomunikasi dengan network communication center.</p>  
@@ -47,7 +47,7 @@ include('partials/global.php') ?>
                                 <p class="mb-0">
                                     <h4>Kode Error TX 7</h4> 
                                     <div class="text-center mt-2 mb-4">
-                                        <img src="assets/img/tx7.jpg" alt="Kode Error Tx 7" srcset="">
+                                        <img src="assets/img/tx7.jpg" alt="Kode Error Tx 7" srcset=""  class="img-fluid">
                                     </div>
                                     <h6>Penyebab :</h6> 
                                     <p>Pada penjelasan modem kode error 7 mengindikasikan bahwa pemancar tidak tersedia karena masalah penyetelan penerima. Adanya sambungan yang kabel yang putus pada bagian pemancar.</p>  
@@ -61,7 +61,7 @@ include('partials/global.php') ?>
                                 <p class="mb-0">                                   
                                     <h4>Kode Error TX 9</h4> 
                                     <div class="text-center mt-2 mb-4">
-                                        <img src="assets/img/tx9.jpg" alt="Kode Error Tx 9" srcset="">
+                                        <img src="assets/img/tx9.jpg" alt="Kode Error Tx 9" srcset=""  class="img-fluid">
                                     </div>
                                     <h6>Penyebab :</h6> 
                                     <p>Pemancar sedang menyesuaikan untuk mengoptimalkan jaringan. Kode TX 9 normalnya bukan merupakan kode gangguan karena kode ini muncul ketika kita melakukan proses ranging ke hub.</p>  
@@ -75,7 +75,7 @@ include('partials/global.php') ?>
                                 <p class="mb-0">
                                     <h4>Kode Error TX 10</h4> 
                                     <div class="text-center mt-2 mb-4">
-                                        <img src="assets/img/tx10.jpg" alt="Kode Error Tx 10" srcset="">
+                                        <img src="assets/img/tx10.jpg" alt="Kode Error Tx 10" srcset=""  class="img-fluid">
                                     </div>
                                     <h6>Penyebab :</h6> 
                                     <p>Pemancar tidak dapat berkomunikasi/tersambung dengan network communication center. Hal ini terjadi karena nilai dari signal strength atau SQF dari antena berada dibawah angka 45 point dimana yang merupakan standar nilai untuk melakukan proses ranging atau transmit.</p>  
@@ -89,7 +89,7 @@ include('partials/global.php') ?>
                                 <p class="mb-0">
                                     <h4>Kode Error TX 13</h4>
                                     <div class="text-center mt-2 mb-4">
-                                        <img src="assets/img/tx13.jpg" alt="Kode Error Tx 13" srcset="">
+                                        <img src="assets/img/tx13.jpg" alt="Kode Error Tx 13" srcset=""  class="img-fluid">
                                     </div> 
                                     <h6>Penyebab :</h6> 
                                     <p>Penjelasan modem kode error 13 mengindikasikan bahwa transmitter tidak bisa memancar karena tidak adanya sambungan dengan network communication center. Kondisi ini terjadi kabel koaksial RG8 BUC ke feedhorn tidak dalam keadaan rapat ataupun putus.</p>  
@@ -107,7 +107,7 @@ include('partials/global.php') ?>
                                 <p class="mb-0">
                                     <h4>Kode Error RX 3</h4> 
                                     <div class="text-center mt-2 mb-4">
-                                        <img src="assets/img/rx3.jpg" alt="Kode Error Rx 3" srcset="">
+                                        <img src="assets/img/rx3.jpg" alt="Kode Error Rx 3" srcset=""  class="img-fluid">
                                     </div>
                                     <h6>Penyebab :</h6> 
                                     <p>Penyebab dari gangguan ini terjadi jika arah antena yang tidak sesuai atau antena dalam keadaan rusak, ataupun kabel yang rusak. Kondisi ini terjadi jika  nilai signal strength atau SQF dibawah 30 point.</p>  
@@ -121,7 +121,7 @@ include('partials/global.php') ?>
                                 <p class="mb-0">
                                     <h4>Kode Error RX 7</h4>
                                     <div class="text-center mt-2 mb-4">
-                                        <img src="assets/img/rx7.jpg" alt="Kode Error Rx 7" srcset="">
+                                        <img src="assets/img/rx7.jpg" alt="Kode Error Rx 7" srcset=""  class="img-fluid">
                                     </div> 
                                     <h6>Penyebab :</h6> 
                                     <p>Penyebab dari gangguan ini terjadi jika arah antena yang tidak sesuai dan mengarah pada satelit yang salah yang tidak sesuai parameter frekuensi ataupun lokasi dari satelit tujuan.</p>  
