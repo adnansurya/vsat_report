@@ -16,6 +16,7 @@ if($_POST['role'] === 'admin'){
         device2_id='" . $_POST['device2'] . "', 
         device3_id='" . $_POST['device3'] . "',
         jenis='" . $_POST['jenis'] . "',  
+        error_id='" . $_POST['kode_error'] . "',
         admin_id='" . $_POST['user_id'] . "',
         teknisi_id='" . $_POST['teknisi'] . "', stat='Sedang Diproses' WHERE report_id='" . $_POST['report_id'] . "'");
         if(!$result){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 05 Okt 2020 pada 13.14
+-- Waktu pembuatan: 05 Okt 2020 pada 13.41
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.3.12
 
@@ -59,6 +59,20 @@ CREATE TABLE `error_list` (
   `jenis_error` text COLLATE utf8_unicode_ci NOT NULL,
   `kode_error` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data untuk tabel `error_list`
+--
+
+INSERT INTO `error_list` (`id_error`, `jenis_error`, `kode_error`) VALUES
+(1, 'Transmit', 'TX 3'),
+(2, 'Transmit', 'TX 5'),
+(3, 'Transmit', 'TX 7'),
+(4, 'Transmit', 'TX 9'),
+(5, 'Transmit', 'TX 10'),
+(6, 'Transmit', 'TX 13'),
+(7, 'Receive', 'RX 3'),
+(8, 'Receive', 'RX 7');
 
 -- --------------------------------------------------------
 
@@ -140,6 +154,12 @@ ALTER TABLE `device`
   ADD PRIMARY KEY (`device_id`);
 
 --
+-- Indeks untuk tabel `error_list`
+--
+ALTER TABLE `error_list`
+  ADD PRIMARY KEY (`id_error`);
+
+--
 -- Indeks untuk tabel `report`
 --
 ALTER TABLE `report`
@@ -160,6 +180,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `device`
   MODIFY `device_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT untuk tabel `error_list`
+--
+ALTER TABLE `error_list`
+  MODIFY `id_error` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `report`

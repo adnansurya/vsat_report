@@ -168,15 +168,16 @@ if(!isset($_GET['id'])){
                                 echo '</select>
                                                 </div>
                                             </div>                                
-                                            <div class="row">
-                                                <div class="col-md-12 mt-2">
-                                                <form action="access/report_update.php" method="post" id="reportForm">
-                                                    <input type="hidden" name="user_id" value="'.$id_session.'">  
-                                                    <input type="hidden" name="role" value="'.$role_session.'">    
-                                                    <input type="hidden" name="report_id" value="'.$report['report_id'].'"> 
-                                                    <div class="form-group">
+                                           
+                                            <form action="access/report_update.php" method="post" id="reportForm">
+                                                <input type="hidden" name="user_id" value="'.$id_session.'">  
+                                                <input type="hidden" name="role" value="'.$role_session.'">    
+                                                <input type="hidden" name="report_id" value="'.$report['report_id'].'"> 
+                                                <div class="row mt-2">
+                                                    
+                                                    <div class="form-group col-md-6">
                                                         <label class="small mb-1" for="exampleFormControlTextarea1">Jenis Gangguan</label>
-                                                        <select name="jenis" class="custom-select">
+                                                        <select name="jenis" class="custom-select" id="jenisSel">
                                                         <option value="Transmit" ';
                                                         if($report['jenis'] == "Transmit") {echo 'selected';} 
                                                         echo '>Transmit</option>
@@ -187,12 +188,21 @@ if(!isset($_GET['id'])){
                                                         if($report['jenis'] == "Fisik") {echo 'selected';} 
                                                         echo '>Fisik</option>
                                                         </select>
+                                                    </div>                                                                                                                                                                                   
+                                            
+                                                    <div class="form-group col-md-6">
+                                                        <label class="small mb-1" for="exampleFormControlTextarea1">Kode Error</label>
+                                                        <select name="kode_error" class="custom-select" id="errorSel">
+                                                            <option value="0">----Tidak Ada -----</option>  
+                                                        </select>                                                                                                                                                                                   
+                                                    </div>                                                    
+                                                </div>   
+                                                <div class="row mt-2">
+                                                    <div class="form-group col-12">
+                                                        <button type="submit" class="btn btn-info btn-block">PROSES</button> 
                                                     </div>
-                                                    <button type="submit" class="btn btn-info btn-block">PROSES</button>                         
-                                                </form>
-                                                    
                                                 </div>
-                                            </div>     
+                                            </form>     
                                         </div>
                                     </div> ';
                                 
@@ -293,6 +303,56 @@ if(!isset($_GET['id'])){
         </div>
         <?php include('partials/scripts.php'); ?>
         <script>
+
+            $(document).ready(function(){
+                let kode_error = "<?php echo $report['error_id'];?>";
+                let jenis_gangguan = "<?php echo $report['jenis'];?>";
+
+                $('#jenisSel').val(jenis_gangguan).change();
+                console.log(kode_error);
+                jQuery.ajax({
+            
+                    type: "GET",
+                    url: 'access/get_error.php',
+                    data: {"jenis": jenis_gangguan },
+                    success: function(data){
+                        let errorObj = JSON.parse(data);
+                        
+                        
+                        if(errorObj.result != 'failed'){
+                            // jQuery('#data-usaha').addClass('mt-4');
+                            jQuery('#errorSel').empty();
+                            let allError = errorObj.data;
+                            console.log(allError);
+                            if(allError.length == 0){
+                                jQuery('#errorSel').append(`
+                                    <option value="0">----Tidak Ada----</option>                               
+                                `);
+                            }else{
+                                for(x in allError){
+                                    let oneError = allError[x];
+
+                                    let optionMaker = `
+                                        <option value="`+oneError.id_error +`"`;
+                                    if(kode_error == oneError.id_error){
+                                        optionMaker += ` selected `;
+                                    }    
+                                    optionMaker += `>`+ oneError.kode_error+`</option>`;                                
+                                    
+                                    jQuery('#errorSel').append(optionMaker);
+                                    
+                                }
+                                jQuery('#errorSel').val(kode_error);
+                            }
+                            
+                            
+                        }else{
+                            console.log("Terjadi kesalahan");
+                        }                    
+                    }
+                });
+
+            });
             function readURL(input) {
 
                 if (input.files && input.files[0]) {
@@ -308,7 +368,46 @@ if(!isset($_GET['id'])){
 
             $("#customFile").change(function() {
                 readURL(this);
-            });   
+            });  
+
+            $("#jenisSel").change(function(){
+                let selectedJenis = $(this).val();
+                jQuery.ajax({
+            
+                    type: "GET",
+                    url: 'access/get_error.php',
+                    data: {"jenis": selectedJenis },
+                    success: function(data){
+                        let errorObj = JSON.parse(data);
+                        
+                        
+                        if(errorObj.result != 'failed'){
+                            // jQuery('#data-usaha').addClass('mt-4');
+                            jQuery('#errorSel').empty();
+                            let allError = errorObj.data;
+                            console.log(allError);
+                            if(allError.length == 0){
+                                jQuery('#errorSel').append(`
+                                    <option value="0">----Tidak Ada----</option>                               
+                                `);
+                            }else{
+                                for(x in allError){
+                                    let oneError = allError[x];
+                                    
+                                    jQuery('#errorSel').append(`
+                                        <option value="`+oneError.id_error+`">`+ oneError.kode_error+`</option>                               
+                                    `);
+                                    
+                                }
+                            }
+                            
+                            
+                        }else{
+                            console.log("Terjadi kesalahan");
+                        }                    
+                    }
+                });
+            }); 
         </script>
     </body>
 </html>
