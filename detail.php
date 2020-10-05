@@ -323,12 +323,12 @@ if(!isset($_GET['id'])){
                             // jQuery('#data-usaha').addClass('mt-4');
                             jQuery('#errorSel').empty();
                             let allError = errorObj.data;
-                            console.log(allError);
-                            if(allError.length == 0){
-                                jQuery('#errorSel').append(`
+                            
+                            jQuery('#errorSel').append(`
                                     <option value="0">----Tidak Ada----</option>                               
                                 `);
-                            }else{
+                            if(allError.length != 0){
+                                                          
                                 for(x in allError){
                                     let oneError = allError[x];
 
@@ -385,12 +385,11 @@ if(!isset($_GET['id'])){
                             // jQuery('#data-usaha').addClass('mt-4');
                             jQuery('#errorSel').empty();
                             let allError = errorObj.data;
-                            console.log(allError);
-                            if(allError.length == 0){
-                                jQuery('#errorSel').append(`
-                                    <option value="0">----Tidak Ada----</option>                               
-                                `);
-                            }else{
+                            jQuery('#errorSel').append(`
+                                <option value="0">----Tidak Ada----</option>                               
+                            `);
+                            if(allError.length != 0){
+                                                           
                                 for(x in allError){
                                     let oneError = allError[x];
                                     
