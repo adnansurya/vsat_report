@@ -136,5 +136,27 @@ include('partials/global.php') ?>
             </div>
         </div>
         <?php include('partials/scripts.php'); ?>
+        <script>
+            $(document).ready(function(){
+                $('#search').keyup(function(){
+                
+                // Search text
+                    var text = $(this).val();
+
+                    if(text == ''){
+                        $('.card').show();
+                    }else{
+    
+                    // Hide all content class element
+                        $('.card').hide();
+
+                        // Search 
+                        $('p:contains("'+text+'")').closest('.card').show();
+                    }
+               
+                
+                });
+            });
+        </script>
     </body>
 </html>
