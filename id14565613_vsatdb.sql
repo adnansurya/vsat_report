@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 11, 2020 at 02:40 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.12
+-- Waktu pembuatan: 05 Okt 2020 pada 13.14
+-- Versi server: 10.3.16-MariaDB
+-- Versi PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `device`
+-- Struktur dari tabel `device`
 --
 
 CREATE TABLE `device` (
@@ -34,7 +34,7 @@ CREATE TABLE `device` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `device`
+-- Dumping data untuk tabel `device`
 --
 
 INSERT INTO `device` (`device_id`, `device_name`) VALUES
@@ -42,7 +42,7 @@ INSERT INTO `device` (`device_id`, `device_name`) VALUES
 (2, 'LNB'),
 (3, 'BUC'),
 (4, 'Adaptor'),
-(5, 'Antena Dish'),
+(5, 'Piringan Antena'),
 (6, 'Pedestal'),
 (7, 'Canister'),
 (8, 'Feed Support'),
@@ -51,7 +51,19 @@ INSERT INTO `device` (`device_id`, `device_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `report`
+-- Struktur dari tabel `error_list`
+--
+
+CREATE TABLE `error_list` (
+  `id_error` int(11) NOT NULL,
+  `jenis_error` text COLLATE utf8_unicode_ci NOT NULL,
+  `kode_error` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `report`
 --
 
 CREATE TABLE `report` (
@@ -63,6 +75,7 @@ CREATE TABLE `report` (
   `stat` varchar(20) NOT NULL,
   `admin_id` int(6) NOT NULL DEFAULT 0,
   `jenis` varchar(100) DEFAULT NULL,
+  `error_id` int(3) NOT NULL,
   `device_id` int(4) NOT NULL DEFAULT 0,
   `device2_id` int(6) NOT NULL DEFAULT 0,
   `device3_id` int(6) NOT NULL DEFAULT 0,
@@ -75,25 +88,23 @@ CREATE TABLE `report` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `report`
+-- Dumping data untuk tabel `report`
 --
 
-INSERT INTO `report` (`report_id`, `customer_id`, `lokasi`, `keterangan`, `waktu_lapor`, `stat`, `admin_id`, `jenis`, `device_id`, `device2_id`, `device3_id`, `teknisi_id`, `tindakan`, `sinyal`, `terdampak`, `gambar`, `waktu_selesai`) VALUES
-(1, 2, 'lapangan', 'mantap', '2020-08-09 16:04:29', 'Selesai', 5, 'Satelit ', 7, 4, 6, 4, 'Oke', NULL, NULL, '1596970121-1.jpg', '2020-08-09 18:48:41'),
-(2, 3, 'Jl. Adhyaksa No.1', 'Antena rubuh', '2020-08-09 16:05:58', 'Selesai', 5, 'Antena rubuh', 5, 7, 6, 4, 'Penggantian badan antena', NULL, NULL, '1596960778-2.jpg', '2020-08-09 16:12:58'),
-(3, 3, 'Jl. AP Pettarani', 'Kabel putus', '2020-08-09 18:35:13', 'Selesai', 5, 'Kabel putus', 9, 0, 0, 4, 'Ganti kabel', NULL, NULL, '1596970296-3.jpg', '2020-08-09 18:51:36'),
-(4, 3, 'Lorong 9', 'Got mampet', '2020-08-09 18:49:29', 'Selesai', 5, 'test', 6, 1, 2, 4, 'test lagi', NULL, NULL, '1596970593-4.jpeg', '2020-08-09 18:56:33'),
-(5, 2, 'halo', 'testing', '2020-08-09 19:03:23', 'Selesai', 5, 'kuy', 9, 0, 0, 4, 'oioi', NULL, NULL, '1596971079-5.png', '2020-08-09 19:04:39'),
-(6, 2, 'report', 'fix bug', '2020-08-09 19:11:42', 'Selesai', 5, 'oi', 3, 0, 0, 4, 'hmhmhm', NULL, NULL, '1596971717-6.png', '2020-08-09 19:15:17'),
-(7, 2, 'lokasi', 'final test', '2020-08-09 19:18:00', 'Selesai', 5, 'feed', 8, 0, 0, 4, 'kokoko', NULL, NULL, '1596971941-7.png', '2020-08-09 19:19:01'),
-(8, 3, 'Jl. Batua Raya', 'Sembarang', '2020-08-09 19:23:16', 'Selesai', 5, 'Tidak ada', 1, 0, 0, 4, 'Ganti skin', NULL, NULL, '1596972383-8.jpg', '2020-08-09 19:26:23'),
-(9, 3, 'Jl. Hertasning', 'Overheat', '2020-08-10 18:39:17', 'Selesai', 5, 'Modem', 4, 1, 0, 4, 'ganti modem', NULL, NULL, '1597057859-9.jpg', '2020-08-10 19:10:59'),
-(10, 3, 'Lorong 7', 'Konslet', '2020-08-10 19:34:37', 'Sedang Diproses', 5, 'Kelistrikan', 4, 0, 0, 4, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `report` (`report_id`, `customer_id`, `lokasi`, `keterangan`, `waktu_lapor`, `stat`, `admin_id`, `jenis`, `error_id`, `device_id`, `device2_id`, `device3_id`, `teknisi_id`, `tindakan`, `sinyal`, `terdampak`, `gambar`, `waktu_selesai`) VALUES
+(1, 3, 'Jl. Adhyaksa Baru No.14', 'Lampu indikator receive modem mati', '2020-08-16 20:54:37', 'Selesai', 5, 'Receive', 0, 2, 9, 0, 4, 'Dilakukan penggantian kabel coxial pada sambungan LNB ke modem.', 85, 'Kabel Coaxial', '1597648472-1.jpg', '2020-08-17 15:14:32'),
+(3, 3, 'Jl. Racing Center No.1', 'Gagal transmit', '2020-08-18 14:27:15', 'Selesai', 5, 'Transmit', 0, 4, 3, 8, 4, 'Ganti perangkat', 90, 'BUC', '1598544891-3.png', '2020-08-28 00:14:51'),
+(4, 3, 'Jl. Poros Asrama Haji Sudiang', 'Antena rubuh', '2020-08-28 13:33:55', 'Selesai', 5, 'Fisik', 0, 7, 6, 5, 6, 'Penggantian badan antena', 90, 'Badan antena', '1598592946-4.jpeg', '2020-08-28 13:35:46'),
+(5, 3, 'Jln. Todopulli 5 setapak 1', 'Gagal transmit', '2020-08-28 19:48:59', 'Sedang Diproses', 5, 'Transmit', 0, 3, 9, 1, 4, NULL, NULL, NULL, NULL, NULL),
+(6, 3, 'Jl. Toddopuli 1', 'Antena terhalang pohon', '2020-08-28 20:06:46', 'Sedang Diproses', 5, 'Transmit', 0, 7, 3, 0, 6, NULL, NULL, NULL, NULL, NULL),
+(7, 3, 'Jln. Toddopuli 5 No 10', 'Lampu indikator receive modem mati', '2020-08-30 19:20:46', 'Selesai', 5, 'Receive', 0, 2, 9, 1, 4, 'Penggantian kabel pada LNB dan modem', 85, 'Kabel Coaxial', '1598789590-7.jpg', '2020-08-30 20:13:10'),
+(8, 3, 'Jl. Adhyaksa Baru no.1', 'Lampu indikator receive mati', '2020-09-24 14:42:03', 'Selesai', 5, 'Receive', 0, 2, 9, 1, 4, 'Penggantian modem', 90, 'Modem', '1600930281-8.jpg', '2020-09-24 14:51:21'),
+(9, 3, 'Jl. Adhyaksa Baru no.13', 'Lampu receive modem mati', '2020-10-01 12:52:10', 'Belum Diproses', 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -102,63 +113,65 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `hp` varchar(30) NOT NULL,
   `role` varchar(20) NOT NULL,
-  `pass` varchar(50) NOT NULL
+  `pass` varchar(50) NOT NULL,
+  `telegram_id` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`user_id`, `nama`, `email`, `hp`, `role`, `pass`) VALUES
-(1, 'SuperUser', 'super@test.com', '000000000', 'superuser', '12345678'),
-(2, 'Customer 0', 'a@a.com', '081081081081', 'customer', '12341234'),
-(3, 'Customer 1', 'customer1@test.com', '081111222333', 'customer', 'qwerty'),
-(4, 'Teknisi 1', 'teknisi1@test.com', '08222333444', 'teknisi', 'qwerty'),
-(5, 'Admin 1', 'admin1@test.com', '08555666777', 'admin', 'qwerty');
+INSERT INTO `user` (`user_id`, `nama`, `email`, `hp`, `role`, `pass`, `telegram_id`) VALUES
+(1, 'SuperUser', 'super@test.com', '000000000', 'superuser', '12345678', ''),
+(2, 'Customer 0', 'a@a.com', '081081081081', 'customer', '12341234', ''),
+(3, 'Customer 1', 'customer1@test.com', '081111222333', 'customer', 'qwerty', ''),
+(4, 'Teknisi 1', 'teknisi1@test.com', '08222333444', 'teknisi', 'qwerty', '956827994'),
+(5, 'Admin 1', 'admin1@test.com', '08555666777', 'admin', 'qwerty', ''),
+(6, 'Teknisi 2', 'teknisi2@test.com', '08111222333', 'teknisi', 'qwerty', '956827994');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `device`
+-- Indeks untuk tabel `device`
 --
 ALTER TABLE `device`
   ADD PRIMARY KEY (`device_id`);
 
 --
--- Indexes for table `report`
+-- Indeks untuk tabel `report`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`report_id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `device`
+-- AUTO_INCREMENT untuk tabel `device`
 --
 ALTER TABLE `device`
-  MODIFY `device_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `device_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `report`
+-- AUTO_INCREMENT untuk tabel `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
