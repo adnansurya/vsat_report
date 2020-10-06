@@ -25,7 +25,17 @@ include('partials/global.php') ?>
                                     Memberikan layanan terbaik merupakan kepuasan bagi kami.                                   
                                 </p>
                             </div>
-                        </div>  
+                        </div> 
+                        <!-- Navbar Search-->
+                        <form class="d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0  <?php if($pagenow != 'index.php'){ echo 'invisible';} ?>">
+                            <div class="input-group">
+                                <input id="search" class="form-control" type="text" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon2" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Navbar--> 
                         <h2 class="mt-4">Gangguan Pada Transmit</h2> 
                         <p>Jenis gangguan pada transmit dapat terjadi apabila modem tidak dapat mengirimkan atau meneruskan sinyal informasi ke satelit. </p>                       
                         <div class="card mb-4">
