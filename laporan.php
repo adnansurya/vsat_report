@@ -137,9 +137,7 @@ include('partials/global.php') ?>
                                 <small>Admin</small>
                                 <p id="adminTxt"></p>
                                 <small>Jenis Gangguan</small>
-                                <p id="jenisTxt"></p>
-                                <small>Kode Error</small>
-                                <p id="errorTxt"></p>
+                                <p id="jenisTxt"></p>                                
                                 <small>List Perangkat</small>
                                 <ul>
                                     <li id="dev1Txt"></li>
@@ -151,6 +149,8 @@ include('partials/global.php') ?>
                                
                                             
                                 <div id="finishDiv">
+                                    <small>Kode Error</small>
+                                    <p id="errorTxt"></p>
                                     <small>Tindakan</small>
                                     <p id="tindakanTxt"></p>
                                     <small>Signal Strength</small>

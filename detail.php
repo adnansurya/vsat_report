@@ -176,7 +176,7 @@ if(!isset($_GET['id'])){
                                                 <input type="hidden" name="report_id" value="'.$report['report_id'].'"> 
                                                 <div class="row mt-2">
                                                     
-                                                    <div class="form-group col-md-6">
+                                                    <div class="form-group col-12">
                                                         <label class="small mb-1" for="exampleFormControlTextarea1">Jenis Gangguan</label>
                                                         <select name="jenis" class="custom-select" id="jenisSel">
                                                         <option value="Transmit" ';
@@ -191,12 +191,7 @@ if(!isset($_GET['id'])){
                                                         </select>
                                                     </div>                                                                                                                                                                                   
                                             
-                                                    <div class="form-group col-md-6">
-                                                        <label class="small mb-1" for="exampleFormControlTextarea1">Kode Error</label>
-                                                        <select name="kode_error" class="custom-select" id="errorSel">
-                                                            <option value="0">----Tidak Ada -----</option>  
-                                                        </select>                                                                                                                                                                                   
-                                                    </div>                                                    
+                                                                                                      
                                                 </div>   
                                                 <div class="row mt-2">
                                                     <div class="form-group col-12">
@@ -217,13 +212,7 @@ if(!isset($_GET['id'])){
                                                         <small>Jenis Gangguan</small>                                                                                                         
                                                         <p>'.$report['jenis'].'</p>                                    
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <small>Kode Error</small>                                                                                                         
-                                                        <p>'.$report['kode_error'].'</p>                                    
-                                                    </div>
-                                                </div>
+                                                </div>                                                
                                                 <div class="row">                                               
                                                     <div class="col-md-12">
                                                         <small>List Perangkat :</small>
@@ -257,6 +246,14 @@ if(!isset($_GET['id'])){
                                             <div class="card-body">
                                             <form action="access/report_update.php" method="post" enctype="multipart/form-data">
                                                 <div class="form-row">
+                                                    <div class="col-md-12">
+                                                        <label class="small mb-1" for="exampleFormControlTextarea1">Kode Error</label>
+                                                        <select name="kode_error" class="custom-select" id="errorSel">
+                                                            <option value="0">----Tidak Ada -----</option>  
+                                                        </select>                                                                                                                                                                                   
+                                                    </div>
+                                                </div> 
+                                                <div class="form-row">                                                    
                                                     <div class="col-md-12">
                                                         <input type="hidden" name="user_id" value="'.$id_session.'">  
                                                         <input type="hidden" name="role" value="'.$role_session.'">    

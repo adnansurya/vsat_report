@@ -15,8 +15,7 @@ if($_POST['role'] === 'admin'){
         device_id='" . $_POST['device'] . "', 
         device2_id='" . $_POST['device2'] . "', 
         device3_id='" . $_POST['device3'] . "',
-        jenis='" . $_POST['jenis'] . "',  
-        error_id='" . $_POST['kode_error'] . "',
+        jenis='" . $_POST['jenis'] . "',          
         admin_id='" . $_POST['user_id'] . "',
         teknisi_id='" . $_POST['teknisi'] . "', stat='Sedang Diproses' WHERE report_id='" . $_POST['report_id'] . "'");
         if(!$result){
@@ -26,9 +25,9 @@ if($_POST['role'] === 'admin'){
             $getUser = mysqli_fetch_array($getUserSql,MYSQLI_ASSOC);
             $chat_id = $getUser['telegram_id'];
             if($chat_id){
-                $getReportSql = mysqli_query($conn, "SELECT user.nama AS 'nama_cust', report.* , error_list.kode_error
+                $getReportSql = mysqli_query($conn, "SELECT user.nama AS 'nama_cust', report.* ,
                 dev1.device_name as 'nama_dev1' , dev2.device_name as 'nama_dev2', dev3.device_name as 'nama_dev3'
-                FROM user, report, device dev1, device dev2, device dev3, error_list
+                FROM user, report, device dev1, device dev2, device dev3
                 WHERE report.customer_id=user.user_id
                 AND (report.error_id = error_list.id_error OR report.error_id = 0) 
                 AND (report.device_id = dev1.device_id OR report.device_id = 0) 
@@ -40,14 +39,12 @@ if($_POST['role'] === 'admin'){
 
                 if($getReport['device_id'] == 0 ) {$dev1 = '';}else{$dev1 =$getReport['nama_dev1']; }
                 if($getReport['device2_id'] == 0 ) {$dev2 = '';}else{$dev2 =$getReport['nama_dev2']; }
-                if($getReport['device3_id'] == 0 ) {$dev3 = '';}else{$dev3 =$getReport['nama_dev3'];}
-                if($getReport['error_id'] == 0 ) {$kode_error = '';}else{$kode_error =$getReport['kode_error'];}
+                if($getReport['device3_id'] == 0 ) {$dev3 = '';}else{$dev3 =$getReport['nama_dev3'];}                
                 
                 $pesan = "Laporan Baru!".PHP_EOL.PHP_EOL." Nama Customer : ". $getReport['nama_cust']
                 .PHP_EOL." Waktu : ". $getReport['waktu_lapor']
                 .PHP_EOL." Alamat : ". $getReport['lokasi']    
-                .PHP_EOL." Jenis Gangguan : ". $getReport['jenis']   
-                .PHP_EOL." Kode Error : ". $kode_error                    
+                .PHP_EOL." Jenis Gangguan : ". $getReport['jenis']                                  
                 .PHP_EOL." Keterangan : ". $getReport['keterangan']    
                 .PHP_EOL.PHP_EOL." List Perangkat : "  
                 .PHP_EOL."- ". $dev1   
@@ -100,6 +97,7 @@ if($_POST['role'] === 'admin'){
                 tindakan='" . $_POST['tindakan'] . "', 
                 terdampak='" . $_POST['terdampak'] . "', 
                 sinyal='" . $_POST['sinyal'] . "', 
+                error_id='" . $_POST['kode_error'] . "',
                 gambar='" . $newfilename . "', 
                 waktu_selesai='" . $waktu . "',               
                 stat='Selesai' 
