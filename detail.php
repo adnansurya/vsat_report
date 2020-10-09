@@ -17,10 +17,11 @@ if(!isset($_GET['id'])){
         (report.admin_id = admin.user_id OR report.admin_id = 0) AND 
         report.report_id = '".$_GET['id']."' GROUP BY report_id");
     }elseif($role_session === 'teknisi'){
-        $sql_test = "SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* ,
+        $sql_test = "SELECT cust.nama as 'nama_cust', admin.nama as 'nama_admin' , report.* , error_list.kode_error,
         dev1.device_name as 'nama_dev1' , dev2.device_name as 'nama_dev2', dev3.device_name as 'nama_dev3'
-        FROM user cust, user admin, report, device dev1, device dev2, device dev3 
+        FROM user cust, user admin, report, device dev1, device dev2, device dev3 , error_list
         WHERE report.customer_id = cust.user_id 
+        AND (report.error_id = error_list.id_error OR report.error_id = 0)
         AND (report.admin_id = admin.user_id OR report.admin_id = 0)
         AND (report.device_id = dev1.device_id OR report.device_id = 0) 
         AND (report.device2_id = dev2.device_id OR report.device2_id = 0) 
@@ -215,6 +216,12 @@ if(!isset($_GET['id'])){
                                                     <div class="col-md-12">
                                                         <small>Jenis Gangguan</small>                                                                                                         
                                                         <p>'.$report['jenis'].'</p>                                    
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <small>Kode Error</small>                                                                                                         
+                                                        <p>'.$report['kode_error'].'</p>                                    
                                                     </div>
                                                 </div>
                                                 <div class="row">                                               
