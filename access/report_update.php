@@ -8,7 +8,8 @@ include('../secret.php');
 
 if($_POST['role'] === 'admin'){
 
-    if(isset($_POST['role']) && isset($_POST['device']) && isset($_POST['device2']) && isset($_POST['device3']) && isset($_POST['jenis']) && isset($_POST['teknisi']) && isset($_POST['report_id']) && isset($_POST['user_id'])){
+    if(isset($_POST['role']) && isset($_POST['device']) && isset($_POST['device2']) &&
+     isset($_POST['device3']) && isset($_POST['jenis']) && isset($_POST['teknisi']) && isset($_POST['report_id']) && isset($_POST['user_id'])){
 
     
         $result =  mysqli_query($conn, "UPDATE report SET 
@@ -29,7 +30,7 @@ if($_POST['role'] === 'admin'){
                 dev1.device_name as 'nama_dev1' , dev2.device_name as 'nama_dev2', dev3.device_name as 'nama_dev3'
                 FROM user, report, device dev1, device dev2, device dev3
                 WHERE report.customer_id=user.user_id
-                AND (report.error_id = error_list.id_error OR report.error_id = 0) 
+                
                 AND (report.device_id = dev1.device_id OR report.device_id = 0) 
                 AND (report.device2_id = dev2.device_id OR report.device2_id = 0) 
                 AND (report.device3_id = dev3.device_id OR report.device3_id = 0)  
