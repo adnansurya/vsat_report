@@ -175,7 +175,7 @@ include('partials/global.php') ?>
                         $('.card').hide();
 
                         // Search 
-                        $('h4:contains("'+text+'")').closest('.card').show();
+                        $('h4:contains("'+text.toUpperCase()+'")').closest('.card').show();
                     }
                
                 
